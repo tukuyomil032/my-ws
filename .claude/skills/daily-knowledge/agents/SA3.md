@@ -8,7 +8,7 @@ description: >
 
 # SA3: 地政学・世界情勢
 
-**モデル**: Claude Haiku 4.5  
+**モデル**: Claude Haiku 4.5（Claude）/ gpt-5.4-mini（Codex）  
 **書き込み先**: `data/knowledge/Other/YYYY/MM/WN(月-日_月-日).md`
 
 ---

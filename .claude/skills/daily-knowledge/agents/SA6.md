@@ -8,7 +8,7 @@ description: >
 
 # SA6: 科学・宇宙・医療
 
-**モデル**: Claude Haiku 4.5  
+**モデル**: Claude Haiku 4.5（Claude）/ gpt-5.4-mini（Codex）  
 **書き込み先**: `data/knowledge/Other/YYYY/MM/WN(月-日_月-日).md`
 
 ---
@@ -47,7 +47,7 @@ WebSearch: arXiv preprint notable this week
 ブレークスルー級の発見・注目論文はフルテキストを精読して正確な要約を作成する:
 
 ```bash
-python3 ~/documents/my-ws/data/scripts/jina-fetch.py "https://記事のURL"
+.venv/bin/python ~/documents/my-ws/data/scripts/jina-fetch.py "https://記事のURL"
 ```
 
 ---

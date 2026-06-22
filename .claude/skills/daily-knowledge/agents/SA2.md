@@ -8,7 +8,7 @@ description: >
 
 # SA2: 技術深層記事
 
-**モデル**: Claude Haiku 4.5  
+**モデル**: Claude Haiku 4.5（Claude）/ gpt-5.4-mini（Codex）  
 **書き込み先**: `data/knowledge/Technology/YYYY/MM/WN(月-日_月-日).md`
 
 ---
@@ -45,7 +45,7 @@ WebSearch: [キーワード] changelog release 2026
 有望な記事（新バージョンリリース・深い技術解説）は Jina Reader でフルテキストを取得して精度の高い要約を作成する:
 
 ```bash
-python3 ~/documents/my-ws/data/scripts/jina-fetch.py "https://記事のURL"
+.venv/bin/python ~/documents/my-ws/data/scripts/jina-fetch.py "https://記事のURL"
 ```
 
 取得した Markdown から記事の核心部分を 2〜3 文で要約する。

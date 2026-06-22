@@ -8,7 +8,7 @@ description: >
 
 # SA4: 経済・スタートアップ
 
-**モデル**: Claude Haiku 4.5  
+**モデル**: Claude Haiku 4.5（Claude）/ gpt-5.4-mini（Codex）  
 **書き込み先**: `data/knowledge/Other/YYYY/MM/WN(月-日_月-日).md`
 
 ---
@@ -41,7 +41,7 @@ WebSearch: tech sector market news today
 大型資金調達（$50M 以上）や注目企業の記事はフルテキストを取得して詳細を把握する:
 
 ```bash
-python3 ~/documents/my-ws/data/scripts/jina-fetch.py "https://記事のURL"
+.venv/bin/python ~/documents/my-ws/data/scripts/jina-fetch.py "https://記事のURL"
 ```
 
 ---

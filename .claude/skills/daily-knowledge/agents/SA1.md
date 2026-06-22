@@ -8,7 +8,7 @@ description: >
 
 # SA1: 技術トレンド
 
-**モデル**: Claude Haiku 4.5  
+**モデル**: Claude Haiku 4.5（Claude）/ gpt-5.4-mini（Codex）  
 **書き込み先**: `data/knowledge/Technology/YYYY/MM/WN(月-日_月-日).md`
 
 ---

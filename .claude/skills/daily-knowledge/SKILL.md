@@ -27,8 +27,9 @@ metadata:
 - **作業ディレクトリ**: `~/documents/my-ws`
 - **Jina API Key**: `~/documents/my-ws/.env` に `JINA_API_KEY=<your_key>` を設定済み
   - 取得先: https://jina.ai（メール登録のみ・無料枠 1,000 万トークン）
-- **インストール済みスキル**: `/interest-profile`、`/deep-research`、`/nlm-skill`
-- **Python 依存パッケージ**: `uv pip install requests python-dotenv`（初回のみ）
+- **必須スキル**: `/interest-profile`
+- **任意スキル**: `/deep-research`（未導入時は各 SA の WebSearch フォールバックを使う）、`/nlm-skill`（月末の STEP 7 でのみ必要。未導入時は STEP 7 をスキップしてログへ記録する）
+- **Python 依存パッケージ**: `uv add requests python-dotenv`（初回のみ）。実行時はプロジェクトの `.venv/bin/python` を使う
 
 ---
 
@@ -84,8 +85,12 @@ SA2 はこのファイルを読んで深層記事の収集対象を決定する�
 
 ### STEP 3: 6体並列情報収集
 
-`/superpowers:subagent-driven-development` を使い、以下の 6 体を **Claude Haiku 4.5** で並列起動する。
+`/superpowers:subagent-driven-development` を使い、以下の 6 体を並列起動する。
 各 SA の詳細指示は `agents/` 配下の対応ファイルを読んでから渡すこと。
+
+**使用モデル（実行環境に合わせて選択）**:
+- Claude で実行する場合: **Claude Haiku 4.5**
+- Codex で実行する場合: **gpt-5.4-mini**
 
 | SA | ファイル | 担当 | 書き込み先 |
 |----|---------|------|-----------|
@@ -98,7 +103,7 @@ SA2 はこのファイルを読んで深層記事の収集対象を決定する�
 
 **Jina Reader の呼び出し方**（SA2・SA4・SA6 で使用）:
 ```bash
-python3 ~/documents/my-ws/data/scripts/jina-fetch.py "https://example.com/article"
+.venv/bin/python ~/documents/my-ws/data/scripts/jina-fetch.py "https://example.com/article"
 ```
 
 ---
@@ -150,7 +155,7 @@ python3 ~/documents/my-ws/data/scripts/jina-fetch.py "https://example.com/articl
 今日が **その月の最終日** の場合のみ実行する:
 
 1. 当月の全週次ファイル（Technology/ + Other/ 両方）を読み込む
-2. `/hallmark`、`/ui-ux-pro-max`、`/frontend-design` のガイドラインに従いデザインを決定する
+2. `/hallmark`、`/ui-ux-pro-max`、`/frontend-design` のガイドラインに従いデザインを決定する。新聞記事や雑誌、統計記事など、情報の視認性とUIの両方を重視する。/ui-ux-pro-maxに関してはそういった世のの中で評価の高いデザインを参考に、コマンド実行時に実際のサイトのURLを指定することでよりhtmlレポートの解像度及び完成度が向上する。
 3. `data/reports/monthly/YYYY/MM.html` を生成する
 
 デザイン方針:
