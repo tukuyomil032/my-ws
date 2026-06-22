@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<!-- Hallmark · macrostructure: Long Document · genre: minimal · theme: Minimal Apple · light -->
+<!-- Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 -->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{WEEK_LABEL}} — My Knowledge</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-paper: oklch(100% 0 0);
+      --color-ink: oklch(13% 0 0);
+      --color-ink-2: oklch(55% 0 0);
+      --color-accent: oklch(50% 0.22 250);
+      --color-surface: oklch(97% 0 0);
+      --color-border: oklch(90% 0 0);
+      --font: -apple-system, "SF Pro Text", "Helvetica Neue", sans-serif;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 5rem;
+      --space-xl: 8rem;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      font-family: var(--font);
+      font-size: 1rem;
+      line-height: 1.75;
+      min-height: 100dvh;
+    }
+
+    /* ── Sticky anchor nav ── */
+    .anchor-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.85);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--color-border);
+      padding: 0 var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      min-height: 3rem;
+    }
+    .anchor-nav__brand {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--color-ink);
+      white-space: nowrap;
+    }
+    .anchor-nav__links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .anchor-nav__links::-webkit-scrollbar { display: none; }
+    .anchor-nav__links a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--color-ink-2);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .anchor-nav__links a:hover { color: var(--color-accent); }
+
+    /* ── Page header ── */
+    .page-header {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-md) var(--space-lg);
+    }
+    .page-header__eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-ink-2);
+      margin-bottom: 0.75rem;
+    }
+    .page-header__title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--color-ink);
+    }
+    .page-header__date {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--color-ink-2);
+    }
+
+    /* ── Section ── */
+    .section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 var(--space-md) var(--space-xl);
+    }
+    .section-header {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-ink-2);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 0.5rem;
+      margin-bottom: var(--space-md);
+    }
+
+    /* ── Article ── */
+    .article {
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .article:first-child { padding-top: 0; }
+    .article:last-child { border-bottom: none; }
+    .article__headline {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+    .article__headline a {
+      color: var(--color-ink);
+      text-decoration: none;
+    }
+    .article__headline a:hover { color: var(--color-accent); }
+    .article__meta {
+      font-size: 0.75rem;
+      color: var(--color-ink-2);
+      margin-bottom: 0.6rem;
+    }
+    .article__body {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--color-ink);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: var(--space-md);
+      border-top: 1px solid var(--color-border);
+      font-size: 0.73rem;
+      color: var(--color-ink-2);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .page-header { padding: var(--space-lg) var(--space-sm) var(--space-md); }
+      .section { padding: 0 var(--space-sm) var(--space-lg); }
+      .footer { padding: var(--space-sm); }
+      .anchor-nav { padding: 0 var(--space-sm); }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="anchor-nav" aria-label="ページ内ナビゲーション">
+    <div class="anchor-nav__brand">My Knowledge</div>
+    <ul class="anchor-nav__links">
+      <li><a href="#tech">Technology</a></li>
+      <li><a href="#world">World</a></li>
+      <li><a href="#economy">Economy</a></li>
+      <li><a href="#science">Science</a></li>
+      <li><a href="#culture">Culture</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-header">
+    <div class="page-header__eyebrow">Weekly Knowledge</div>
+    <h1 class="page-header__title">{{WEEK_LABEL}}</h1>
+    <div class="page-header__date">{{GENERATED_DATE}} 生成</div>
+  </header>
+
+  <section class="section" id="tech">
+    <div class="section-header">Technology &amp; Development</div>
+    {{TECH_ARTICLES}}
+  </section>
+
+  <section class="section" id="other">
+    <div class="section-header">World, Economy, Science &amp; Culture</div>
+    {{OTHER_ARTICLES}}
+  </section>
+
+  <footer class="footer">
+    <span>My Knowledge Weekly</span>
+    <span>{{WEEK_LABEL}}</span>
+  </footer>
+
+</body>
+</html>

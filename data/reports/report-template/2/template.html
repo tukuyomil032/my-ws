@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<!-- Hallmark · macrostructure: Marquee Hero · genre: editorial · theme: Magazine · light -->
+<!-- Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 -->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{WEEK_LABEL}} — My Knowledge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-paper: oklch(100% 0 0);
+      --color-ink: oklch(15% 0.005 240);
+      --color-ink-2: oklch(45% 0.005 240);
+      --color-accent: oklch(28% 0.06 245);
+      --color-border: oklch(88% 0.005 240);
+      --color-hero-bg: oklch(12% 0.008 245);
+      --font-display: "DM Serif Display", Georgia, serif;
+      --font-body: "DM Sans", system-ui, sans-serif;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 7rem;
+    }
+
+    html { overflow-x: clip; }
+    body {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      min-height: 100dvh;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--color-hero-bg);
+      color: #fff;
+      padding: var(--space-xl) var(--space-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero__eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: var(--space-sm);
+    }
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      max-width: 18ch;
+      margin-bottom: var(--space-md);
+    }
+    .hero__meta {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .hero__meta span { display: flex; gap: 0.4em; align-items: center; }
+
+    /* ── Tab nav ── */
+    .tab-nav {
+      border-bottom: 1px solid var(--color-border);
+      padding: 0 var(--space-lg);
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-ink-2);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.15s, border-color 0.15s;
+      margin-bottom: -1px;
+    }
+    .tab-btn:hover { color: var(--color-ink); }
+    .tab-btn.is-active {
+      color: var(--color-ink);
+      border-bottom-color: var(--color-ink);
+    }
+
+    /* ── Content area ── */
+    .content-area {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: var(--space-md) var(--space-lg) var(--space-xl);
+    }
+    .tab-content { display: none; }
+    .tab-content.is-active { display: block; }
+
+    /* ── Article grid ── */
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+
+    /* ── Article card ── */
+    .article {
+      padding: var(--space-sm) 0;
+      border-top: 1px solid var(--color-border);
+    }
+    .article__headline {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .article__headline a {
+      color: var(--color-ink);
+      text-decoration: none;
+    }
+    .article__headline a:hover { color: var(--color-accent); }
+    .article__meta {
+      font-size: 0.73rem;
+      color: var(--color-ink-2);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .article__body {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--color-ink-2);
+    }
+
+    .section-header {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-ink-2);
+      margin-bottom: var(--space-sm);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--color-ink);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-sm) var(--space-lg);
+      font-size: 0.73rem;
+      color: var(--color-ink-2);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .article-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero, .content-area, .tab-nav, .footer { padding-left: var(--space-sm); padding-right: var(--space-sm); }
+    }
+    @media (max-width: 600px) {
+      .article-grid { grid-template-columns: 1fr; }
+      .hero { padding: var(--space-lg) var(--space-sm); }
+      .hero__title { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero__eyebrow">My Knowledge</div>
+    <h1 class="hero__title">{{WEEK_LABEL}}</h1>
+    <div class="hero__meta">
+      <span>{{GENERATED_DATE}} 生成</span>
+      <span>週次レポート</span>
+    </div>
+  </div>
+
+  <nav class="tab-nav" aria-label="カテゴリー">
+    <button class="tab-btn is-active" data-tab="tech">Technology</button>
+    <button class="tab-btn" data-tab="world">World Affairs</button>
+    <button class="tab-btn" data-tab="economy">Economy</button>
+    <button class="tab-btn" data-tab="science">Science</button>
+    <button class="tab-btn" data-tab="culture">Culture</button>
+  </nav>
+
+  <div class="content-area">
+    <div class="tab-content is-active" id="tab-tech">
+      <div class="section-header">Technology &amp; Development</div>
+      <div class="article-grid">
+        {{TECH_ARTICLES}}
+      </div>
+    </div>
+    <div class="tab-content" id="tab-world">
+      <div class="section-header">World Affairs</div>
+      <div class="article-grid">
+        {{OTHER_ARTICLES_WORLD}}
+      </div>
+    </div>
+    <div class="tab-content" id="tab-economy">
+      <div class="section-header">Economy &amp; Startups</div>
+      <div class="article-grid">
+        {{OTHER_ARTICLES_ECONOMY}}
+      </div>
+    </div>
+    <div class="tab-content" id="tab-science">
+      <div class="section-header">Science &amp; Space</div>
+      <div class="article-grid">
+        {{OTHER_ARTICLES_SCIENCE}}
+      </div>
+    </div>
+    <div class="tab-content" id="tab-culture">
+      <div class="section-header">Culture &amp; Entertainment</div>
+      <div class="article-grid">
+        {{OTHER_ARTICLES_CULTURE}}
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    My Knowledge Weekly · {{WEEK_LABEL}}
+  </footer>
+
+  <script>
+    const btns = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-content');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('is-active'));
+        panels.forEach(p => p.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('is-active');
+      });
+    });
+  </script>
+
+</body>
+</html>
