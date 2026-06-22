@@ -1,0 +1,1253 @@
+<!DOCTYPE html>
+<!-- Hallmark · pre-emit critique: P5 H5 E5 S4 R5 V4 -->
+<!--
+  Weekly Digest W4 — 2026-06-22
+  Genre: Editorial | Theme: Midnight (custom dark) | Macrostructure: Newsprint
+-->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>週次ダイジェスト W4 | 2026年6月22日〜28日</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ── Token block ───────────────────────────────────────── */
+    :root {
+      --color-bg:              #09090e;
+      --color-surface:         #10101a;
+      --color-surface-2:       #18182a;
+      --color-surface-3:       #20203a;
+      --color-border:          #252538;
+      --color-border-light:    #1e1e30;
+      --color-text:            #e0e0ea;
+      --color-text-secondary:  #8888a8;
+      --color-text-muted:      #505065;
+      --color-focus:           #5b8dee;
+
+      --color-tech:            #4d80e6;
+      --color-tech-bg:         rgba(77,128,230,.08);
+      --color-world:           #e05050;
+      --color-world-bg:        rgba(224,80,80,.08);
+      --color-economy:         #3eb870;
+      --color-economy-bg:      rgba(62,184,112,.08);
+      --color-science:         #9050e0;
+      --color-science-bg:      rgba(144,80,224,.08);
+      --color-culture:         #d09040;
+      --color-culture-bg:      rgba(208,144,64,.08);
+
+      --font-display:  'Noto Sans JP', system-ui, sans-serif;
+      --font-mono:     'JetBrains Mono', 'Fira Code', monospace;
+
+      --space-2xs: 0.25rem;
+      --space-xs:  0.375rem;
+      --space-sm:  0.625rem;
+      --space-md:  1rem;
+      --space-lg:  1.5rem;
+      --space-xl:  2rem;
+      --space-2xl: 3rem;
+      --space-3xl: 5rem;
+
+      --radius-sm: 3px;
+      --radius-md: 6px;
+      --radius-lg: 10px;
+
+      --border:   1px solid var(--color-border);
+    }
+
+    /* ── Reset ─────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: clip; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-display);
+      background: var(--color-bg);
+      color: var(--color-text);
+      line-height: 1.7;
+      font-size: 0.9375rem;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      color: var(--color-text);
+      text-decoration-color: var(--color-border);
+      text-underline-offset: 3px;
+      transition: color .15s;
+    }
+    a:hover { color: var(--color-focus); text-decoration-color: var(--color-focus); }
+    a:focus-visible { outline: 2px solid var(--color-focus); outline-offset: 2px; border-radius: var(--radius-sm); }
+
+    /* ── Layout ─────────────────────────────────────────────── */
+    .layout {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      min-height: 100vh;
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* ── Sidebar nav ────────────────────────────────────────── */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      height: 100vh;
+      overflow-y: auto;
+      border-right: var(--border);
+      padding: var(--space-2xl) var(--space-lg);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xl);
+    }
+
+    .sidebar-logo {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-xs);
+    }
+    .sidebar-logo .label {
+      font-size: 0.6875rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      font-weight: 500;
+    }
+    .sidebar-logo .week {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      line-height: 1.1;
+    }
+    .sidebar-logo .date {
+      font-size: 0.75rem;
+      color: var(--color-text-secondary);
+      font-family: var(--font-mono);
+      margin-top: var(--space-2xs);
+    }
+
+    .nav-section {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2xs);
+    }
+    .nav-label {
+      font-size: 0.6875rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      font-weight: 500;
+      padding: 0 var(--space-sm);
+      margin-bottom: var(--space-xs);
+    }
+    .nav-link {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      padding: var(--space-xs) var(--space-sm);
+      border-radius: var(--radius-md);
+      font-size: 0.8125rem;
+      text-decoration: none;
+      color: var(--color-text-secondary);
+      transition: background .12s, color .12s;
+    }
+    .nav-link:hover { background: var(--color-surface-2); color: var(--color-text); }
+    .nav-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .sidebar-meta {
+      margin-top: auto;
+      padding-top: var(--space-lg);
+      border-top: var(--border);
+      font-size: 0.6875rem;
+      color: var(--color-text-muted);
+      line-height: 1.8;
+    }
+
+    /* ── Main content ───────────────────────────────────────── */
+    .main {
+      padding: var(--space-2xl) var(--space-2xl);
+      max-width: 860px;
+    }
+
+    /* ── Page header ────────────────────────────────────────── */
+    .page-header {
+      padding-bottom: var(--space-2xl);
+      border-bottom: var(--border);
+      margin-bottom: var(--space-2xl);
+    }
+    .page-header .eyebrow {
+      font-size: 0.6875rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      font-family: var(--font-mono);
+      margin-bottom: var(--space-md);
+    }
+    .page-header h1 {
+      font-size: clamp(1.75rem, 4vw, 2.625rem);
+      font-weight: 600;
+      letter-spacing: -.03em;
+      line-height: 1.1;
+      overflow-wrap: anywhere;
+      min-width: 0;
+    }
+    .page-header .sub {
+      margin-top: var(--space-md);
+      color: var(--color-text-secondary);
+      font-size: 0.875rem;
+      max-width: 540px;
+      line-height: 1.6;
+    }
+    .page-header .stats {
+      display: flex;
+      gap: var(--space-xl);
+      margin-top: var(--space-lg);
+      flex-wrap: wrap;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+    .stat-num {
+      font-family: var(--font-mono);
+      font-size: 1.375rem;
+      font-weight: 500;
+      color: var(--color-text);
+      letter-spacing: -.02em;
+    }
+    .stat-label {
+      font-size: 0.6875rem;
+      color: var(--color-text-muted);
+      letter-spacing: .05em;
+      text-transform: uppercase;
+    }
+
+    /* ── Section ────────────────────────────────────────────── */
+    .section {
+      padding-bottom: var(--space-3xl);
+      border-bottom: var(--border);
+      margin-bottom: var(--space-3xl);
+    }
+    .section:last-child { border-bottom: none; }
+
+    .section-header {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-md);
+      margin-bottom: var(--space-xl);
+      padding-bottom: var(--space-md);
+      border-bottom: var(--border);
+    }
+    .section-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-xs);
+      font-size: 0.6875rem;
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding: var(--space-2xs) var(--space-sm);
+      border-radius: var(--radius-sm);
+    }
+    .section-header h2 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      letter-spacing: -.02em;
+      overflow-wrap: anywhere;
+      min-width: 0;
+    }
+    .section-count {
+      margin-left: auto;
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--color-text-muted);
+      flex-shrink: 0;
+    }
+
+    /* ── Sub-section ────────────────────────────────────────── */
+    .subsection { margin-bottom: var(--space-2xl); }
+    .subsection:last-child { margin-bottom: 0; }
+    .subsection-title {
+      font-size: 0.6875rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--color-text-muted);
+      font-weight: 500;
+      margin-bottom: var(--space-md);
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+    .subsection-title::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--color-border-light);
+    }
+
+    /* ── Article card ───────────────────────────────────────── */
+    .card {
+      border: var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--color-surface);
+      padding: var(--space-lg);
+      margin-bottom: var(--space-md);
+      transition: border-color .15s, background .15s;
+    }
+    .card:last-child { margin-bottom: 0; }
+    .card:hover { border-color: var(--color-surface-3); background: var(--color-surface-2); }
+
+    .card-title {
+      font-size: 0.9375rem;
+      font-weight: 500;
+      line-height: 1.4;
+      margin-bottom: var(--space-sm);
+      overflow-wrap: anywhere;
+      min-width: 0;
+    }
+    .card-title a { text-decoration: none; }
+    .card-title a:hover { text-decoration: underline; }
+
+    .card-summary {
+      font-size: 0.875rem;
+      color: var(--color-text-secondary);
+      line-height: 1.7;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-md);
+      margin-top: var(--space-md);
+      padding-top: var(--space-md);
+      border-top: var(--border);
+      flex-wrap: wrap;
+    }
+    .card-source {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--color-text-muted);
+    }
+    .card-badge {
+      font-size: 0.6875rem;
+      padding: 1px 6px;
+      border-radius: var(--radius-sm);
+      font-weight: 500;
+      letter-spacing: .04em;
+    }
+
+    /* ── Inline list items (for trend lists) ────────────────── */
+    .trend-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .trend-item {
+      display: flex;
+      gap: var(--space-md);
+      padding: var(--space-md);
+      border-radius: var(--radius-md);
+      border: var(--border);
+      background: var(--color-surface);
+      align-items: flex-start;
+      transition: background .12s;
+    }
+    .trend-item:hover { background: var(--color-surface-2); }
+    .trend-rank {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--color-text-muted);
+      min-width: 2.5rem;
+      padding-top: 2px;
+      flex-shrink: 0;
+    }
+    .trend-body { flex: 1; min-width: 0; }
+    .trend-title {
+      font-size: 0.875rem;
+      font-weight: 500;
+      line-height: 1.4;
+      overflow-wrap: anywhere;
+    }
+    .trend-desc {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+    .trend-stars {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--color-economy);
+      flex-shrink: 0;
+      padding-top: 2px;
+    }
+
+    /* ── Funding table ──────────────────────────────────────── */
+    .funding-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+    .funding-item {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-md);
+      align-items: start;
+      padding: var(--space-md);
+      border: var(--border);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+    }
+    .funding-name {
+      font-size: 0.875rem;
+      font-weight: 500;
+    }
+    .funding-desc {
+      font-size: 0.8125rem;
+      color: var(--color-text-secondary);
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+    .funding-amount {
+      font-family: var(--font-mono);
+      font-size: 0.875rem;
+      font-weight: 500;
+      color: var(--color-economy);
+      white-space: nowrap;
+      text-align: right;
+    }
+    .funding-round {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--color-text-muted);
+      text-align: right;
+    }
+
+    /* color theme helpers */
+    .tag-tech     { background: var(--color-tech-bg);    color: var(--color-tech);    }
+    .tag-world    { background: var(--color-world-bg);   color: var(--color-world);   }
+    .tag-economy  { background: var(--color-economy-bg); color: var(--color-economy); }
+    .tag-science  { background: var(--color-science-bg); color: var(--color-science); }
+    .tag-culture  { background: var(--color-culture-bg); color: var(--color-culture); }
+
+    .dot-tech    { background: var(--color-tech); }
+    .dot-world   { background: var(--color-world); }
+    .dot-economy { background: var(--color-economy); }
+    .dot-science { background: var(--color-science); }
+    .dot-culture { background: var(--color-culture); }
+
+    .border-tech    { border-left: 3px solid var(--color-tech); }
+    .border-world   { border-left: 3px solid var(--color-world); }
+    .border-economy { border-left: 3px solid var(--color-economy); }
+    .border-science { border-left: 3px solid var(--color-science); }
+    .border-culture { border-left: 3px solid var(--color-culture); }
+
+    /* ── Quote ──────────────────────────────────────────────── */
+    blockquote {
+      border-left: 2px solid var(--color-border);
+      padding-left: var(--space-md);
+      color: var(--color-text-secondary);
+      font-size: 0.875rem;
+      line-height: 1.7;
+      font-style: italic;
+    }
+
+    /* ── Notice banner ──────────────────────────────────────── */
+    .notice {
+      font-size: 0.8125rem;
+      color: var(--color-text-muted);
+      background: var(--color-surface);
+      border: var(--border);
+      border-radius: var(--radius-md);
+      padding: var(--space-sm) var(--space-md);
+      margin-bottom: var(--space-xl);
+      font-family: var(--font-mono);
+    }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    .page-footer {
+      padding: var(--space-2xl) 0;
+      border-top: var(--border);
+      margin-top: var(--space-xl);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: var(--space-md);
+    }
+    .page-footer .copy {
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+    }
+    .page-footer .gen-by {
+      font-family: var(--font-mono);
+      font-size: 0.6875rem;
+      color: var(--color-text-muted);
+    }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 768px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+      .sidebar {
+        position: static;
+        height: auto;
+        overflow-y: visible;
+        border-right: none;
+        border-bottom: var(--border);
+        padding: var(--space-lg) var(--space-md);
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: var(--space-md);
+      }
+      .sidebar-logo { gap: var(--space-2xs); }
+      .sidebar-logo .week { font-size: 1.125rem; }
+      .nav-section { display: none; }
+      .sidebar-meta { display: none; }
+      .main {
+        padding: var(--space-lg) var(--space-md);
+        max-width: 100%;
+      }
+      .page-header .stats {
+        gap: var(--space-lg);
+      }
+      .funding-item {
+        grid-template-columns: 1fr;
+      }
+      .funding-amount, .funding-round {
+        text-align: left;
+      }
+    }
+    @media (max-width: 414px) {
+      body { font-size: 0.875rem; }
+      .card { padding: var(--space-md); }
+      .page-header .stats { gap: var(--space-md); }
+    }
+    @media (max-width: 375px) {
+      .trend-item { flex-direction: column; gap: var(--space-xs); }
+      .trend-rank { min-width: auto; }
+    }
+    @media (max-width: 320px) {
+      .main { padding: var(--space-md) var(--space-sm); }
+    }
+  </style>
+</head>
+<body>
+
+<div class="layout">
+
+  <!-- ─── Sidebar ─────────────────────────────────────── -->
+  <nav class="sidebar" aria-label="目次">
+    <div class="sidebar-logo">
+      <span class="label">Weekly Digest</span>
+      <span class="week">Week 4</span>
+      <span class="date">2026-06-22 〜 06-28</span>
+    </div>
+
+    <div class="nav-section">
+      <p class="nav-label">Technology</p>
+      <a href="#tech-trends" class="nav-link">
+        <span class="nav-dot dot-tech"></span>技術トレンド
+      </a>
+      <a href="#tech-deep" class="nav-link">
+        <span class="nav-dot dot-tech"></span>技術深層
+      </a>
+    </div>
+
+    <div class="nav-section">
+      <p class="nav-label">World</p>
+      <a href="#world" class="nav-link">
+        <span class="nav-dot dot-world"></span>世界情勢
+      </a>
+      <a href="#economy" class="nav-link">
+        <span class="nav-dot dot-economy"></span>経済・スタートアップ
+      </a>
+    </div>
+
+    <div class="nav-section">
+      <p class="nav-label">Other</p>
+      <a href="#science" class="nav-link">
+        <span class="nav-dot dot-science"></span>科学・宇宙・医療
+      </a>
+      <a href="#culture" class="nav-link">
+        <span class="nav-dot dot-culture"></span>文化・エンタメ
+      </a>
+    </div>
+
+    <div class="sidebar-meta">
+      <div>収集エージェント: SA1–SA6</div>
+      <div>補完: Claude Code 会話履歴</div>
+      <div>生成: 2026-06-22</div>
+    </div>
+  </nav>
+
+  <!-- ─── Main ──────────────────────────────────────── -->
+  <main class="main">
+
+    <!-- Page header -->
+    <header class="page-header">
+      <p class="eyebrow">personal · knowledge · digest</p>
+      <h1>週次ダイジェスト<br>W4 / 6月22日</h1>
+      <p class="sub">技術トレンド・世界情勢・経済・科学・文化を6エージェントで収集した2026年6月第4週のまとめ。</p>
+      <div class="stats">
+        <div class="stat">
+          <span class="stat-num">6</span>
+          <span class="stat-label">Categories</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">24</span>
+          <span class="stat-label">Articles</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">5</span>
+          <span class="stat-label">Fundings</span>
+        </div>
+        <div class="stat">
+          <span class="stat-num">4</span>
+          <span class="stat-label">Nature Papers</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- ─── 1. 技術トレンド ────────────────────────────── -->
+    <section class="section" id="tech-trends">
+      <div class="section-header">
+        <span class="section-tag tag-tech">Tech</span>
+        <h2>技術トレンド</h2>
+        <span class="section-count">2026-06-22</span>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">GitHub Trending</p>
+        <ul class="trend-list">
+
+          <li class="trend-item">
+            <span class="trend-rank">#01</span>
+            <div class="trend-body">
+              <p class="trend-title">
+                <a href="https://github.com/chopratejas/headroom" target="_blank" rel="noopener">chopratejas / headroom</a>
+              </p>
+              <p class="trend-desc">ログやRAGチャンクなどをLLM投入前に圧縮し、ツール出力のトークン量削減を狙うライブラリ兼MCPサーバー。</p>
+            </div>
+            <span class="trend-stars">★2,624</span>
+          </li>
+
+          <li class="trend-item">
+            <span class="trend-rank">#02</span>
+            <div class="trend-body">
+              <p class="trend-title">
+                <a href="https://github.com/palmier-io/palmier-pro" target="_blank" rel="noopener">palmier-io / palmier-pro</a>
+              </p>
+              <p class="trend-desc">AI支援を組み込んだmacOS向け動画編集アプリ。</p>
+            </div>
+            <span class="trend-stars">★1,834</span>
+          </li>
+
+          <li class="trend-item">
+            <span class="trend-rank">#03</span>
+            <div class="trend-body">
+              <p class="trend-title">
+                <a href="https://github.com/penpot/penpot" target="_blank" rel="noopener">penpot / penpot</a>
+              </p>
+              <p class="trend-desc">デザインとコードの協業に焦点を当てたオープンソースのデザインツール。</p>
+            </div>
+            <span class="trend-stars">★1,135</span>
+          </li>
+
+          <li class="trend-item">
+            <span class="trend-rank">#04</span>
+            <div class="trend-body">
+              <p class="trend-title">
+                <a href="https://github.com/DeusData/codebase-memory-mcp" target="_blank" rel="noopener">DeusData / codebase-memory-mcp</a>
+              </p>
+              <p class="trend-desc">コードベースを永続的な知識グラフへ索引化し、AIエージェントの検索コスト削減を狙うMCPサーバー。</p>
+            </div>
+            <span class="trend-stars">★1,032</span>
+          </li>
+
+          <li class="trend-item">
+            <span class="trend-rank">#05</span>
+            <div class="trend-body">
+              <p class="trend-title">
+                <a href="https://github.com/calesthio/OpenMontage" target="_blank" rel="noopener">calesthio / OpenMontage</a>
+              </p>
+              <p class="trend-desc">12の制作パイプラインと52ツールを備え、AIコーディングアシスタントから動画制作を自動化するオープンソース基盤。</p>
+            </div>
+            <span class="trend-stars">★987</span>
+          </li>
+
+          <li class="trend-item">
+            <span class="trend-rank">#06</span>
+            <div class="trend-body">
+              <p class="trend-title">
+                <a href="https://github.com/tursodatabase/turso" target="_blank" rel="noopener">tursodatabase / turso</a>
+              </p>
+              <p class="trend-desc">SQLite互換のインプロセスSQLデータベース。</p>
+            </div>
+            <span class="trend-stars">★548</span>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Hacker News Top</p>
+        <ul class="trend-list">
+
+          <li class="trend-item">
+            <span class="trend-rank">HN·1</span>
+            <div class="trend-body">
+              <p class="trend-title">
+                <a href="https://apertvs.ai/" target="_blank" rel="noopener">Apertus – Open Foundation Model for Sovereign AI</a>
+              </p>
+              <p class="trend-desc">主権AIを意識したオープンな基盤モデルが注目を集めた。</p>
+            </div>
+          </li>
+
+          <li class="trend-item">
+            <span class="trend-rank">HN·2</span>
+            <div class="trend-body">
+              <p class="trend-title">
+                <a href="https://hawksley.dev/blog/json-ld-explained-for-personal-websites/" target="_blank" rel="noopener">JSON-LD explained for personal websites</a>
+              </p>
+              <p class="trend-desc">個人サイトでJSON-LDを使い、検索エンジンへ構造化情報を伝える方法を解説。</p>
+            </div>
+          </li>
+
+          <li class="trend-item">
+            <span class="trend-rank">HN·3</span>
+            <div class="trend-body">
+              <p class="trend-title">
+                <a href="https://brandur.org/minimum-viable-unit" target="_blank" rel="noopener">The minimum viable unit of saleable software</a>
+              </p>
+              <p class="trend-desc">ソフトウェアを販売可能な最小単位へ切り分ける際の考え方を整理。</p>
+            </div>
+          </li>
+
+          <li class="trend-item">
+            <span class="trend-rank">HN·4</span>
+            <div class="trend-body">
+              <p class="trend-title">
+                <a href="https://github.com/raiyanyahya/recall" target="_blank" rel="noopener">Show HN: Recall – Local project memory for Claude Code</a>
+              </p>
+              <p class="trend-desc">Claude Code向けにプロジェクト記憶をローカル保存・検索するツール。</p>
+            </div>
+          </li>
+
+          <li class="trend-item">
+            <span class="trend-rank">HN·5</span>
+            <div class="trend-body">
+              <p class="trend-title">
+                <a href="https://openjsf.org/blog/burnout-is-real-for-open-source-maintainers" target="_blank" rel="noopener">Burnout is real for open source maintainers</a>
+              </p>
+              <p class="trend-desc">OSSメンテナーの燃え尽きと、持続可能なコミュニティ運営の必要性を扱う。</p>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Reddit ハイライト</p>
+        <ul class="trend-list">
+
+          <li class="trend-item">
+            <span class="trend-rank">r/rust</span>
+            <div class="trend-body">
+              <p class="trend-title">
+                <a href="https://www.reddit.com/r/rust/comments/1ubvauy/ai_is_making_me_want_to_quit_everything_related/" target="_blank" rel="noopener">AI is making me want to quit everything related to software</a>
+              </p>
+              <p class="trend-desc">AI生成物の画一化と、ソフトウェア開発者の疲弊・職業観をめぐる議論。</p>
+            </div>
+          </li>
+
+          <li class="trend-item">
+            <span class="trend-rank">r/webdev</span>
+            <div class="trend-body">
+              <p class="trend-title">
+                <a href="https://www.reddit.com/r/webdev/comments/1ubvjp9/i_discovered_and_responsibly_disclosed_a_broken/" target="_blank" rel="noopener">Broken Access Control vulnerability — government portal 300K+ students</a>
+              </p>
+              <p class="trend-desc">クライアント側だけに権限制御を頼る危険性と、政府系ポータルでの責任ある脆弱性開示事例。</p>
+            </div>
+          </li>
+
+        </ul>
+      </div>
+    </section>
+
+    <!-- ─── 2. 技術深層 ─────────────────────────────────── -->
+    <section class="section" id="tech-deep">
+      <div class="section-header">
+        <span class="section-tag tag-tech">Tech · Deep</span>
+        <h2>技術深層記事</h2>
+        <span class="section-count">2026-06-22</span>
+      </div>
+
+      <div class="notice">初回テスト補完 — Claude Code 全プロジェクト会話履歴（21プロジェクト・360MB）を ai-title レコードから分析。個人情報フィルタリング済み。</div>
+
+      <div class="subsection">
+        <p class="subsection-title">Codex · エージェントオーケストレーション</p>
+
+        <div class="card border-tech">
+          <p class="card-title">
+            <a href="https://github.com/openai/codex/releases/tag/rust-v0.141.0" target="_blank" rel="noopener">Codex CLI rust-v0.141.0 — E2E暗号化・スレッド単位MCP有効化</a>
+          </p>
+          <p class="card-summary">リモート実行のE2E暗号化、環境固有の作業ディレクトリ保持、スレッド単位のMCP有効化を追加。長時間のエージェント運用で、安全性と観測性が改善された。</p>
+          <div class="card-meta">
+            <span class="card-source">github.com/openai/codex</span>
+            <span class="card-badge tag-tech">Release Notes</span>
+          </div>
+        </div>
+
+        <div class="card border-tech">
+          <p class="card-title">
+            <a href="https://openai.com/index/running-codex-safely/" target="_blank" rel="noopener">Running Codex safely at OpenAI</a>
+          </p>
+          <p class="card-summary">サンドボックス、承認、ネットワーク制限、資格情報管理を解説する一次資料。OpenTelemetryにツール実行や承認判断を残し、実行理由まで監査する設計が重要となる。</p>
+          <div class="card-meta">
+            <span class="card-source">openai.com</span>
+            <span class="card-badge tag-tech">Official</span>
+          </div>
+        </div>
+
+        <div class="card border-tech">
+          <p class="card-title">
+            <a href="https://zenn.dev/totsu_ai_lab/articles/codex-subagent-guide" target="_blank" rel="noopener">Codex サブエージェント完全ガイド</a>
+          </p>
+          <p class="card-summary">専門エージェントへの分割と並列実行を設定例付きで整理。調査・実装・レビューの責務と成果物を分けることが、重複とコンテキスト浪費を防ぐ鍵になる。</p>
+          <div class="card-meta">
+            <span class="card-source">zenn.dev</span>
+            <span class="card-badge tag-tech">Guide</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Claude Code · エージェントスキル</p>
+
+        <div class="card border-tech">
+          <p class="card-title">
+            <a href="https://dev.to/claudeguide/claude-code-skills-explained-what-they-are-when-to-use-them-2026-2370" target="_blank" rel="noopener">Claude Code Skills Explained</a>
+          </p>
+          <p class="card-summary">SKILL.mdを再利用可能な手順、CLAUDE.mdを常時必要な文脈として使い分ける。参照資料やスクリプトを必要時だけ読む構成により、コンテキスト消費を抑えられる。</p>
+          <div class="card-meta">
+            <span class="card-source">dev.to</span>
+          </div>
+        </div>
+
+        <div class="card border-tech">
+          <p class="card-title">
+            <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.185" target="_blank" rel="noopener">Claude Code v2.1.185 — 無通信判定を10秒→20秒へ延長</a>
+          </p>
+          <p class="card-summary">API応答停止の警告を明確化し、無通信判定を10秒から20秒へ延長。長時間処理の一時的な遅延を障害と誤認しにくくなった。</p>
+          <div class="card-meta">
+            <span class="card-source">github.com/anthropics</span>
+            <span class="card-badge tag-tech">Release</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Jina AI Reader · Web情報取得</p>
+
+        <div class="card border-tech">
+          <p class="card-title">
+            <a href="https://zenn.dev/suwash/articles/jina-reader_20260403" target="_blank" rel="noopener">Jina Reader 技術調査 — RAG・キャッシュ・SPA取得</a>
+          </p>
+          <p class="card-summary">ReaderとSearch APIを、RAG、キャッシュ、レート制限、SPA取得まで掘り下げる。定常収集ではキャッシュと指数バックオフを使い、鮮度が必要な場合だけキャッシュを無効化する設計が有効。</p>
+          <div class="card-meta">
+            <span class="card-source">zenn.dev</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">Claude Code 会話履歴 — 週次初回抽出</p>
+
+        <div class="card border-tech">
+          <p class="card-title">開発プロジェクト傾向サマリー（21プロジェクト）</p>
+          <p class="card-summary">
+            macOSネイティブアプリ（perch: 57セッション）が最も活発。Electron→Tauri・Wails→Tauriという技術移行が複数プロジェクトで同時進行。
+            Mocha/Selenium→PlaywrightへのE2Eテスト移行、Vitestの導入も並行実施。
+            CLIツール（stela・nlm-custom-prompt-viewer）はnpm公開済み。
+          </p>
+          <div class="card-meta">
+            <span class="card-source">Claude Code 会話履歴 / ai-title records</span>
+            <span class="card-badge tag-tech">Internal</span>
+          </div>
+        </div>
+
+        <div class="card border-tech">
+          <p class="card-title">技術スタック一覧（現役 vs 廃止）</p>
+          <p class="card-summary">
+            <strong>現役:</strong> Swift + SwiftUI/AppKit, TypeScript + React + Vite 8 + Tailwind v4, Rust (Tauri v2), Python — Playwright (E2E) + Vitest (unit) — GitHub Actions + Bun + Homebrew tap — Biome<br>
+            <strong>移行完了・廃止:</strong> Go (Wails), Electron, Selenium/Mocha
+          </p>
+          <div class="card-meta">
+            <span class="card-source">Claude Code 会話履歴 / プロジェクト横断抽出</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 3. 世界情勢 ─────────────────────────────────── -->
+    <section class="section" id="world">
+      <div class="section-header">
+        <span class="section-tag tag-world">World</span>
+        <h2>世界情勢</h2>
+        <span class="section-count">2026-06-22</span>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">中東 / 米・イラン</p>
+
+        <div class="card border-world">
+          <p class="card-title">
+            <a href="https://apnews.com/article/4bbde727c7095c4ad9da0285ca79f1e1" target="_blank" rel="noopener">米・イラン交渉2日目、レバノン「衝突回避セル」設置で合意</a>
+          </p>
+          <p class="card-summary">仲介国は前向きな進展を発表した。恒久和平はレバノン沈静化と連動する一方、イスラエル軍駐留・核問題・制裁解除は未解決のまま。</p>
+          <div class="card-meta">
+            <span class="card-source">AP News</span>
+          </div>
+        </div>
+
+        <div class="card border-world">
+          <p class="card-title">
+            <a href="https://apnews.com/article/f45ace109972b8c36364e7a75cc9bb7f" target="_blank" rel="noopener">ガザ攻撃で子ども2人を含む6人死亡、累計死者1,000人超</a>
+          </p>
+          <p class="card-summary">停戦後も攻撃が続き、外交の焦点がイラン・レバノンへ移るなかでガザ停戦の実効性が改めて問われている。</p>
+          <div class="card-meta">
+            <span class="card-source">AP News</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">欧州 / ウクライナ</p>
+
+        <div class="card border-world">
+          <p class="card-title">
+            <a href="https://apnews.com/article/1bd4d0980a353fa0f8221040215e6435" target="_blank" rel="noopener">ロシア占領下クリミア、民間向けガソリン販売を停止</a>
+          </p>
+          <p class="card-summary">ウクライナが石油施設への攻撃を強め、長距離攻撃が軍需物流だけでなく占領統治と住民生活にも圧力を及ぼしている。</p>
+          <div class="card-meta">
+            <span class="card-source">AP News</span>
+          </div>
+        </div>
+
+        <div class="card border-world">
+          <p class="card-title">
+            <a href="https://www.internazionale.it/ultime-notizie-reuters/2026/06/18/nato-says-it-agrees-to-modernise-nuclear-capabilities" target="_blank" rel="noopener">NATO、核能力の近代化で合意</a>
+          </p>
+          <p class="card-summary">米国の欧州関与見直しと対露緊張を背景に、欧州の負担増と核抑止重視を示す政策シグナル。核能力と計画体制を更新する。</p>
+          <div class="card-meta">
+            <span class="card-source">Internazionale / Reuters</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">東アジア / 台湾</p>
+
+        <div class="card border-world">
+          <p class="card-title">
+            <a href="https://www.thedailystar.net/news/world/news/taiwan-hold-combat-readiness-drills-4204711" target="_blank" rel="noopener">台湾、急な中国軍侵攻を想定した即応演習を開始</a>
+          </p>
+          <p class="card-summary">中国軍の通常演習が実戦へ転じるシナリオを採用し、儀礼的訓練から現実的な奇襲対処へ重点を移している。同日に中国軍機21機を確認。</p>
+          <div class="card-meta">
+            <span class="card-source">The Daily Star</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 4. 経済・スタートアップ ───────────────────────── -->
+    <section class="section" id="economy">
+      <div class="section-header">
+        <span class="section-tag tag-economy">Economy</span>
+        <h2>経済・スタートアップ</h2>
+        <span class="section-count">2026-06-22</span>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">注目の資金調達</p>
+        <div class="funding-list">
+
+          <div class="funding-item">
+            <div>
+              <p class="funding-name">
+                <a href="https://techcrunch.com/2026/06/15/malaysias-respond-io-raises-62-5m-eyes-acquisitions-in-north-america-and-europe/" target="_blank" rel="noopener">Respond.io</a>
+              </p>
+              <p class="funding-desc">AI顧客対応プラットフォーム。欧米での採用・買収に充当。マレーシア発。</p>
+            </div>
+            <div>
+              <p class="funding-amount">$62.5M</p>
+              <p class="funding-round">Series B</p>
+            </div>
+          </div>
+
+          <div class="funding-item">
+            <div>
+              <p class="funding-name">
+                <a href="https://techcrunch.com/2026/06/15/sarvam-becomes-indias-newest-ai-unicorn-with-234-million-funding-round-led-by-hcltech/" target="_blank" rel="noopener">Sarvam</a>
+              </p>
+              <p class="funding-desc">インド独自のAI基盤開発。評価額$1.5Bで新たなインドAIユニコーンに。</p>
+            </div>
+            <div>
+              <p class="funding-amount">$234M</p>
+              <p class="funding-round">Series B · Unicorn</p>
+            </div>
+          </div>
+
+          <div class="funding-item">
+            <div>
+              <p class="funding-name">
+                <a href="https://techcrunch.com/2026/06/15/ai-agents-are-becoming-employees-newcore-emerges-with-66m-to-give-them-identities/" target="_blank" rel="noopener">NewCore</a>
+              </p>
+              <p class="funding-desc">人間とAIエージェントのID・権限を一元管理するプラットフォーム。</p>
+            </div>
+            <div>
+              <p class="funding-amount">$66M</p>
+              <p class="funding-round">Seed</p>
+            </div>
+          </div>
+
+          <div class="funding-item">
+            <div>
+              <p class="funding-name">
+                <a href="https://techcrunch.com/2026/06/17/pramaana-labs-raises-27-million-seed-round-from-khosla-ventures-to-bring-formal-verification-to-ai/" target="_blank" rel="noopener">Pramaana Labs</a>
+              </p>
+              <p class="funding-desc">形式検証をAI開発へ導入し、出力の信頼性向上を狙う。Khosla Ventures出資。</p>
+            </div>
+            <div>
+              <p class="funding-amount">$27M</p>
+              <p class="funding-round">Seed</p>
+            </div>
+          </div>
+
+          <div class="funding-item">
+            <div>
+              <p class="funding-name">
+                <a href="https://techcrunch.com/2026/06/18/the-11-standout-startups-from-ycs-demo-day-according-to-vcs/" target="_blank" rel="noopener">Ploy</a>
+              </p>
+              <p class="funding-desc">Web制作とマーケティング運用をAIエージェントで自動化。YC Spring 2026。</p>
+            </div>
+            <div>
+              <p class="funding-amount">$27M</p>
+              <p class="funding-round">Seed · YC S26</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">マーケット動向</p>
+
+        <div class="card border-economy">
+          <p class="card-title">
+            <a href="https://techcrunch.com/2026/06/18/ai-inference-startup-baseten-reportedly-raising-1-5b-months-after-its-last-mega-round/" target="_blank" rel="noopener">Baseten、$1.5B 調達を最終調整中（評価額最大$13B）</a>
+          </p>
+          <p class="card-summary">未確定ながらAI推論基盤への資本集中とsplit-priced roundによる評価額膨張が続く傾向を示す。</p>
+          <div class="card-meta">
+            <span class="card-source">TechCrunch</span>
+          </div>
+        </div>
+
+        <div class="card border-economy">
+          <p class="card-title">
+            <a href="https://techcrunch.com/2026/06/18/the-11-standout-startups-from-ycs-demo-day-according-to-vcs/" target="_blank" rel="noopener">YC Spring 2026 — 防衛・ロボティクス・AI基盤に人気集中</a>
+          </p>
+          <p class="card-summary">少なくとも2社が$175M超の評価額を提示され、具体的な業務・安全保障用途への選別が強まった。</p>
+          <div class="card-meta">
+            <span class="card-source">TechCrunch</span>
+          </div>
+        </div>
+
+        <div class="card border-economy">
+          <p class="card-title">
+            <a href="https://techcrunch.com/2026/06/15/spacexs-biggest-ever-ipo-just-grew-to-85-7-billion-raised/" target="_blank" rel="noopener">SpaceX IPO調達額が$85.7Bに拡大、史上最大規模</a>
+          </p>
+          <p class="card-summary">宇宙・AI計算資源の長期成長へ公開市場の大きな期待が集まっている。</p>
+          <div class="card-meta">
+            <span class="card-source">TechCrunch</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 5. 科学・宇宙・医療 ────────────────────────────── -->
+    <section class="section" id="science">
+      <div class="section-header">
+        <span class="section-tag tag-science">Science</span>
+        <h2>科学・宇宙・医療</h2>
+        <span class="section-count">2026-06-22 · Nature Papers</span>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">宇宙科学</p>
+        <div class="card border-science">
+          <p class="card-title">
+            <a href="https://www.nature.com/articles/s41586-026-10586-5" target="_blank" rel="noopener">A distant brown dwarf coplanar to a warm Jupiter and a hot super-Earth</a>
+          </p>
+          <p class="card-summary">恒星TOI-201を長期観測し、スーパーアース・ウォームジュピター・褐色矮星がほぼ同一平面上に並ぶ系を確認。この配置は各天体の形成・移動過程を検証する手掛かりとなる。</p>
+          <div class="card-meta">
+            <span class="card-source">Nature</span>
+            <span class="card-badge tag-science">Peer Reviewed</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">基礎物理</p>
+        <div class="card border-science">
+          <p class="card-title">
+            <a href="https://www.nature.com/articles/s41586-026-10617-1" target="_blank" rel="noopener">A prototype differential atom interferometer for fundamental physics</a>
+          </p>
+          <p class="card-summary">ストロンチウム87を使う差動原子干渉計が、大きなレーザー位相雑音下でも標準量子限界の感度を維持できることを実証。重力波や超軽量暗黒物質探索に向けた測定原理を裏づけた。</p>
+          <div class="card-meta">
+            <span class="card-source">Nature</span>
+            <span class="card-badge tag-science">Peer Reviewed</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">気候科学</p>
+        <div class="card border-science">
+          <p class="card-title">
+            <a href="https://www.nature.com/articles/s41586-026-10664-8" target="_blank" rel="noopener">Rock weathering can counteract river CO₂ emissions induced by permafrost thaw</a>
+          </p>
+          <p class="card-summary">青海チベット高原では、永久凍土の被覆が減るほど河川のCO₂放出が低下し、岩石風化による炭素吸収が増える傾向が示された。全球規模への外挿には追加検証が必要。</p>
+          <div class="card-meta">
+            <span class="card-source">Nature</span>
+            <span class="card-badge tag-science">Peer Reviewed</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">医学・医療AI</p>
+        <div class="card border-science">
+          <p class="card-title">
+            <a href="https://www.nature.com/articles/s41586-026-10675-5" target="_blank" rel="noopener">Towards autonomous medical artificial intelligence agents — MIRA</a>
+          </p>
+          <p class="card-summary">電子健康記録内で問診から治療計画まで行うAIエージェントMIRAを実患者データに基づく模擬症例で評価。専門医群を上回る診断精度を示したが、実臨床での安全性と一般化性能は前向き試験での確認が必要。</p>
+          <div class="card-meta">
+            <span class="card-source">Nature</span>
+            <span class="card-badge tag-science">Peer Reviewed</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ─── 6. 文化・エンタメ ──────────────────────────────── -->
+    <section class="section" id="culture">
+      <div class="section-header">
+        <span class="section-tag tag-culture">Culture</span>
+        <h2>文化・エンタメ</h2>
+        <span class="section-count">2026-06-22</span>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">音楽</p>
+
+        <div class="card border-culture">
+          <p class="card-title">
+            <a href="https://pitchfork.com/reviews/albums/pond-terrestrials/" target="_blank" rel="noopener">Pond『Terrestrials』— Pitchfork Review</a>
+          </p>
+          <p class="card-summary">環境崩壊、豪州のアイデンティティ、企業権力を扱う、切迫感のあるサイケロック作品。6月19日レビュー。</p>
+          <div class="card-meta">
+            <span class="card-source">Pitchfork</span>
+          </div>
+        </div>
+
+        <div class="card border-culture">
+          <p class="card-title">
+            <a href="https://pitchfork.com/reviews/albums/shabason-krgovich-four-days-in-june/" target="_blank" rel="noopener">Joseph Shabason / Nicholas Krgovich『Four Days in June』</a>
+          </p>
+          <p class="card-summary">1990年代カントリーの柔らかな質感とジャズポップを融合。日常の小さな喜びや加齢への感謝を穏やかに描く。</p>
+          <div class="card-meta">
+            <span class="card-source">Pitchfork</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">映像・アニメ</p>
+
+        <div class="card border-culture">
+          <p class="card-title">
+            <a href="https://apnews.com/article/72cff10361dd338ebd54aea963d77ee8" target="_blank" rel="noopener">『Toy Story 5』— 北米初週$160M、シリーズ最高興収</a>
+          </p>
+          <p class="card-summary">6月19日公開。玩具とスクリーン文化の衝突を扱い、長寿シリーズの興行力を改めて示した。</p>
+          <div class="card-meta">
+            <span class="card-source">AP News</span>
+          </div>
+        </div>
+
+        <div class="card border-culture">
+          <p class="card-title">
+            <a href="https://www.reddit.com/r/anime/comments/1u8ea01/crunchyroll_summer_2026_anime_season_lineup/" target="_blank" rel="noopener">Crunchyroll 2026年夏アニメラインナップ発表</a>
+          </p>
+          <p class="card-summary">『Re:ゼロ』第4期、『無職転生』第3期などを含む大型編成。新作の配信先やローカライズをめぐる議論が活発（約600票）。</p>
+          <div class="card-meta">
+            <span class="card-source">Reddit / r/anime</span>
+          </div>
+        </div>
+
+        <div class="card border-culture">
+          <p class="card-title">
+            <a href="https://www.aniplex.co.jp/news/detail/?id=70436" target="_blank" rel="noopener">『BLEACH 千年血戦篇-禍進譚-』劇場先行上映</a>
+          </p>
+          <p class="card-summary">最終クールの先行上映が6月21日に実施。長期シリーズの完結に向けた注目イベント。</p>
+          <div class="card-meta">
+            <span class="card-source">ANIPLEX</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="subsection">
+        <p class="subsection-title">アート・文化</p>
+
+        <div class="card border-culture">
+          <p class="card-title">
+            <a href="https://www.basel.com/en/events/art-basel" target="_blank" rel="noopener">Art Basel 2026 — 約290ギャラリー・4,000作家</a>
+          </p>
+          <p class="card-summary">6月18〜21日に開催。現代美術市場と大型インスタレーションの現在地を示す年次最大イベント。</p>
+          <div class="card-meta">
+            <span class="card-source">Art Basel</span>
+          </div>
+        </div>
+
+        <div class="card border-culture">
+          <p class="card-title">
+            <a href="https://times.abema.tv/en/articles/-/10247228?page=1" target="_blank" rel="noopener">「細田守、その根幹」展 — 6月20日開幕</a>
+          </p>
+          <p class="card-summary">中学時代の8mm自主制作、学生期の映像・油彩から代表作までをたどり、細田守の創作基盤を可視化。</p>
+          <div class="card-meta">
+            <span class="card-source">AbemaTV Times</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="page-footer">
+      <p class="copy">Personal Knowledge Digest — private use only</p>
+      <p class="gen-by">generated by /daily-knowledge · 2026-06-22</p>
+    </footer>
+
+  </main>
+</div>
+
+</body>
+</html>
