@@ -1,0 +1,13 @@
+dev/**
+.superpowers
+secrets
+.env
+.env.local
+.DS_Store
+node_modules
+__pychache__
+*.pyc
+build
+dist
+.venv
+.pyenv
