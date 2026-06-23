@@ -8,8 +8,8 @@ description: >
 
 # SA3: 地政学・世界情勢
 
-**モデル**: Claude Haiku 4.5  
-**書き込み先**: `data/knowledge/Other/YYYY/MM/WN(月-日_月-日).md`
+**モデル**: Claude Haiku 4.5（Claude）/ gpt-5.4-mini（Codex）
+**最終統合先（親が書き込む）**: `data/knowledge/Other/YYYY/MM/WN(月-日_月-日).md`
 
 ---
 
@@ -52,7 +52,7 @@ WebFetch: [記事URL]
 
 ## 出力フォーマット
 
-Other 週次ファイルへ以下のフォーマットで **追記** する:
+親が指定するSA3用ステージングファイルへ以下のフォーマットで出力する。Other週次ファイルは直接変更しない:
 
 ```markdown
 ## YYYY-MM-DD - 世界情勢

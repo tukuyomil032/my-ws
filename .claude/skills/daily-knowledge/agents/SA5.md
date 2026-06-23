@@ -9,7 +9,7 @@ description: >
 # SA5: 文化・エンタメ・音楽
 
 **モデル**: Claude Haiku 4.5（Claude）/ gpt-5.4-mini（Codex）  
-**書き込み先**: `data/knowledge/Other/YYYY/MM/WN(月-日_月-日).md`
+**最終統合先（親が書き込む）**: `data/knowledge/Other/YYYY/MM/WN(月-日_月-日).md`
 
 ---
 
@@ -49,7 +49,7 @@ WebSearch: design trend 2026
 
 ## 出力フォーマット
 
-Other 週次ファイルへ以下のフォーマットで **追記** する:
+親が指定するSA5用ステージングファイルへ以下のフォーマットで出力する。Other週次ファイルは直接変更しない:
 
 ```markdown
 ## YYYY-MM-DD - 文化・エンタメ

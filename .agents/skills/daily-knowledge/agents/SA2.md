@@ -8,8 +8,8 @@ description: >
 
 # SA2: 技術深層記事
 
-**モデル**: Claude Haiku 4.5  
-**書き込み先**: `data/knowledge/Technology/YYYY/MM/WN(月-日_月-日).md`
+**モデル**: Claude Haiku 4.5（Claude）/ gpt-5.4-mini（Codex）
+**最終統合先（親が書き込む）**: `data/knowledge/Technology/YYYY/MM/WN(月-日_月-日).md`
 
 ---
 
@@ -54,7 +54,7 @@ python3 ~/documents/my-ws/data/scripts/jina-fetch.py "https://記事のURL"
 
 ## 出力フォーマット
 
-Tech 週次ファイルへ以下のフォーマットで **追記** する:
+親が指定するSA2用ステージングファイルへ以下のフォーマットで出力する。Tech週次ファイルは直接変更しない:
 
 ```markdown
 ## YYYY-MM-DD - 技術深層

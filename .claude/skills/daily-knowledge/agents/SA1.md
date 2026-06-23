@@ -3,13 +3,13 @@ name: sa1-tech-trends
 description: >
   SA1 — 技術トレンド収集エージェント。
   HackerNews Algolia API・GitHub Trending・Reddit 技術系サブレディットから
-  今日のホット投稿を収集し、Tech 週次ファイルに追記する。
+  今日のホット投稿を収集し、親が指定する個別ステージングファイルへ出力する。
 ---
 
 # SA1: 技術トレンド
 
 **モデル**: Claude Haiku 4.5（Claude）/ gpt-5.4-mini（Codex）  
-**書き込み先**: `data/knowledge/Technology/YYYY/MM/WN(月-日_月-日).md`
+**最終統合先（親が書き込む）**: `data/knowledge/Technology/YYYY/MM/WN(月-日_月-日).md`
 
 ---
 
@@ -54,7 +54,7 @@ WebSearch: site:reddit.com/r/webdev hot today
 
 ## 出力フォーマット
 
-Tech 週次ファイルへ以下のフォーマットで **追記** する:
+親が指定するSA1用ステージングファイルへ以下のフォーマットで出力する。Tech週次ファイルは直接変更しない:
 
 ```markdown
 ## YYYY-MM-DD - 技術トレンド
@@ -74,5 +74,5 @@ Tech 週次ファイルへ以下のフォーマットで **追記** する:
 ## 注意事項
 
 - GitHub Trending の URL は `https://github.com/owner/repo` 形式で記録する
-- スター数は `1.2k` などの略記のまま記録してよい
+- スター数はISO 8601相当の取得日時・タイムゾーンを併記できる場合だけ、`1.2k` などの略記で記録してよい。取得時点が不明なら数値を省く
 - Reddit は投稿タイトルのみ把握できた場合も URL なしで記録しない（`site:` 検索で取得できた URL を使う）
