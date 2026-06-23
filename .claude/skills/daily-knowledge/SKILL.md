@@ -229,6 +229,46 @@ SA2 はこのファイルを読んで深層記事の収集対象を決定する�
 
 ---
 
+### STEP 8: コミット & Push（毎回必須）
+
+ルーティンで更新したファイルをタスク単位に分けてコミットし、リモートへ Push する。
+
+#### コミット分類ルール
+
+| グループ | 対象ファイル | コミットプレフィックス |
+|---------|------------|---------------------|
+| **日次収集** | `INTERESTS.md`, `data/interests/*`, `data/knowledge/**/*.md`, `data/suggestions/**/*.md` | `chore:` |
+| **週次レポート**（日曜のみ） | `data/reports/weekly/YYYY/WN.html`, `.hallmark/last-weekly-template` | `chore:` |
+| **月次マガジン**（月末のみ） | `data/reports/monthly/YYYY/MM.html`, `.hallmark/last-monthly-template` | `chore:` |
+
+#### コミットメッセージ形式
+
+```bash
+# 日次収集
+git commit -m "chore: daily-knowledge routine output for WN (YYYY-MM-DD)" \
+           -m "対象週・更新SA数・追記件数の概要" \
+           -m "Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+
+# 週次レポート（別コミット）
+git commit -m "chore: generate weekly report WN with template N" \
+           -m "Template: <テンプレート名> — 記事数X件" \
+           -m "Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+
+# 月次マガジン（別コミット）
+git commit -m "chore: generate monthly magazine YYYY/MM with template N" \
+           -m "Co-Authored-By: Claude Sonnet 4.6 <noreply@anthropic.com>"
+```
+
+#### Push
+
+全コミット完了後、必ず Push する:
+
+```bash
+git push origin main
+```
+
+---
+
 ## Safety Boundaries
 
 - 各週次ファイルへの書き込みは必ず **追記モード**（既存内容を絶対に消さない）
