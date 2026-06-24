@@ -72,3 +72,4 @@ WebSearch: [キーワード] changelog release 2026
 - Zenn 記事 URL は `https://zenn.dev/` から始まる URL を使う
 - Jina Reader は 1 回の実行で 1 記事のみ。複数記事は個別に呼び出す
 - changelog 検索は公式リポジトリ・公式ブログを優先する（GitHub Releases・公式サイト）
+- Jina Reader が DNS・接続・HTTP 5xx で失敗した場合は最大1回だけ再試行し、それでも失敗した記事は確認範囲を成果物の注意点に書く。検索スニペットだけで破壊的変更や移行手順を断定しない。

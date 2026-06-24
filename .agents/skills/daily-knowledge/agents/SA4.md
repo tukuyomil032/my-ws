@@ -41,7 +41,7 @@ WebSearch: tech sector market news today
 大型資金調達（$50M 以上）や注目企業の記事はフルテキストを取得して詳細を把握する:
 
 ```bash
-python3 ~/documents/my-ws/data/scripts/jina-fetch.py "https://記事のURL"
+.venv/bin/python ~/documents/my-ws/data/scripts/jina-fetch.py "https://記事のURL"
 ```
 
 ---
@@ -68,3 +68,5 @@ python3 ~/documents/my-ws/data/scripts/jina-fetch.py "https://記事のURL"
 - 資金調達情報がない日は「注目の資金調達」セクションを省略してよい
 - Bloomberg 記事はペイウォールがある場合がある → WebSearch の snippet 情報で要約する
 - 仮想通貨・NFT 関連は原則スキップ（特にニュースバリューが高い場合のみ含める）
+- 既存の当週ファイルに同じ企業・調達案件が既にある場合、別媒体の同一内容は候補止まりにする。金額変更、正式発表、追加投資、評価額変更などの新事実が確認できる場合だけ採用する。
+- Jina Reader が DNS・接続・HTTP 5xx で失敗した場合は最大1回だけ再試行し、それでも失敗した記事は確認範囲を成果物の注意点に書く。検索スニペットだけで金額・評価額・投資家を断定しない。
