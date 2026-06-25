@@ -74,5 +74,6 @@ WebSearch: site:reddit.com/r/webdev hot today
 ## 注意事項
 
 - GitHub Trending の URL は `https://github.com/owner/repo` 形式で記録する
+- 既存週次ファイルに同じ `owner/repo` がある場合、再度 Trending に出ていても候補止まりにする。新しい release、security advisory、major funding など別の新事実を確認できる場合だけ採用する
 - スター数はISO 8601相当の取得日時・タイムゾーンを併記できる場合だけ、`1.2k` などの略記で記録してよい。取得時点が不明なら数値を省く
 - Reddit は投稿タイトルのみ把握できた場合も URL なしで記録しない（`site:` 検索で取得できた URL を使う）
