@@ -28,6 +28,15 @@ metadata:
 - **Jina API Key**: `~/documents/my-ws/.env` に `JINA_API_KEY=<your_key>` を設定済み
   - 取得先: https://jina.ai（メール登録のみ・無料枠 1,000 万トークン）
   - 確認時はキー値を出力しない。`rg` で `.env` を読む場合も `JINA_API_KEY` の存在確認だけに留め、値が端末・ログ・最終報告に出ない方法を使う。
+  - 禁止例: `rg -n "JINA_API_KEY=" .env` は値まで出力するため使わない。
+  - 安全な確認例:
+    ```bash
+    .venv/bin/python - <<'PY'
+    from dotenv import dotenv_values
+    key = dotenv_values(".env").get("JINA_API_KEY")
+    print("JINA_API_KEY configured" if key and key != "your_api_key_here" else "JINA_API_KEY missing")
+    PY
+    ```
 - **インストール済みスキル**: `/interest-profile`、`/deep-research`、`/nlm-skill`
 - **Python 依存パッケージ**: `uv pip install requests python-dotenv`（初回のみ）
 
