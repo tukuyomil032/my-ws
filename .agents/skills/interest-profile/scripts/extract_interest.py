@@ -37,14 +37,26 @@ NOISE_PREFIXES = (
     "<command-message",
     "<task-notification",
     "<command-name>",
+    "<bash-input>",
+    "<bash-stdout>",
+    "<turn_aborted>",
     "Base directory for this skill:",  # スキル読込時に注入される SKILL.md 本文
+)
+
+# Codex の response_item に自動注入されるシステムコンテキストブロック
+CODEX_NOISE_PREFIXES = (
+    "<recommended_plugins>",
+    "# AGENTS.md instructions",
+    "<environment_context>",
+    "<system_information>",
+    "<filesystem>",
 )
 
 MIN_LENGTH = 20
 
 
 def normalize_content(content) -> str | None:
-    """user メッセージの content を平文テキストに正規化する。
+    """user メッセージの content を平文テキストに正規化する（Claude Code 用）。
 
     content は次の形式を取りうる:
       - str                       … ユーザーが打った素のテキスト
@@ -66,6 +78,28 @@ def normalize_content(content) -> str | None:
     return None
 
 
+def normalize_codex_content(payload) -> str | None:
+    """Codex の response_item payload からユーザー入力テキストを抽出する。
+
+    各 response_item.payload には複数の input_text ブロックが含まれ、
+    先頭のほとんどはシステム注入コンテキスト（AGENTS.md, environment など）。
+    CODEX_NOISE_PREFIXES に合致するブロックを除外し残りを連結して返す。
+    """
+    if payload.get("role") != "user":
+        return None
+    texts = []
+    for block in payload.get("content", []):
+        if not isinstance(block, dict):
+            continue
+        if block.get("type") != "input_text":
+            continue
+        text = block.get("text", "")
+        if any(text.lstrip().startswith(p) for p in CODEX_NOISE_PREFIXES):
+            continue
+        texts.append(text)
+    return "\n".join(texts) if texts else None
+
+
 def default_logs_dir() -> Path:
     """カレントディレクトリに対応する Claude Code のログディレクトリを推定する。
 
@@ -74,6 +108,27 @@ def default_logs_dir() -> Path:
     """
     encoded = os.getcwd().replace("/", "-")
     return Path.home() / ".claude" / "projects" / encoded
+
+
+def default_codex_base_dir() -> Path:
+    """Codex のログベースディレクトリ（~/.codex）を返す。"""
+    return Path.home() / ".codex"
+
+
+def find_codex_files(codex_base: Path) -> list:
+    """Codex セッション JSONL を mtime 昇順で返す。
+
+    - ~/.codex/sessions/YYYY/MM/DD/*.jsonl（日付ディレクトリ）
+    - ~/.codex/archived_sessions/*.jsonl（アーカイブ）
+    """
+    files = []
+    sessions_dir = codex_base / "sessions"
+    if sessions_dir.exists():
+        files.extend(sessions_dir.rglob("*.jsonl"))
+    archived_dir = codex_base / "archived_sessions"
+    if archived_dir.exists():
+        files.extend(archived_dir.glob("*.jsonl"))
+    return sorted(files, key=lambda p: p.stat().st_mtime)
 
 
 def load_state(state_file: Path) -> dict:
@@ -95,6 +150,56 @@ def save_state(state_file: Path, state: dict):
     with open(tmp, "w", encoding="utf-8") as f:
         json.dump(state, f, indent=2, ensure_ascii=False)
     os.replace(tmp, state_file)
+
+
+def extract_from_codex_session(filepath: Path, skip_lines: int = 0):
+    """Codex セッションを skip_lines の続きから読み、(抽出メッセージ, 走査した総行数) を返す。
+
+    session_meta（行0）は session_id 取得のため skip_lines に関わらず常に読む。
+    """
+    messages = []
+    lines_total = 0
+    session_id = filepath.stem  # fallback: ファイル名そのまま
+
+    with open(filepath, encoding="utf-8") as f:
+        for i, line in enumerate(f):
+            lines_total = i + 1
+            try:
+                obj = json.loads(line)
+            except json.JSONDecodeError:
+                continue
+
+            # session_meta は常にパースして session_id を取得する
+            if obj.get("type") == "session_meta":
+                sid = obj.get("payload", {}).get("id")
+                if sid:
+                    session_id = sid
+                continue  # session_meta 自体はシグナルにしない
+
+            if i < skip_lines:
+                continue
+
+            if obj.get("type") != "response_item":
+                continue
+
+            payload = obj.get("payload", {})
+            content = normalize_codex_content(payload)
+            if content is None:
+                continue
+            if len(content) <= MIN_LENGTH:
+                continue
+            if any(content.lstrip().startswith(p) for p in NOISE_PREFIXES):
+                continue
+
+            ts = obj.get("timestamp", "")
+            messages.append({
+                "ts": ts,
+                "session_id": session_id,
+                "source": "codex",
+                "content": content[:2000],
+            })
+
+    return messages, lines_total
 
 
 def extract_from_session(filepath: Path, skip_lines: int = 0):
@@ -184,9 +289,54 @@ def commit_state(state_file: Path, pending_file: Path):
     print(f"--- Committed state to {state_file} ---", file=sys.stderr)
 
 
+def _process_sessions(
+    files: list,
+    sessions_state: dict,
+    extract_fn,
+    all_messages: list,
+    new_state: dict,
+    max_messages: int,
+    reached_cap: bool,
+) -> bool:
+    """セッションファイルリストを処理し、メッセージを all_messages に追記する。
+
+    reached_cap が True の場合は処理をスキップする（上限到達後の続き）。
+    戻り値: cap に達したかどうか（True なら以降の処理を省略してよい）。
+    """
+    for filepath in files:
+        if reached_cap:
+            break
+        file_key = filepath.stem
+        current_mtime = filepath.stat().st_mtime
+        prev = sessions_state.get(file_key, {})
+        prev_mtime = prev.get("mtime", 0)
+        prev_lines = prev.get("lines_read", 0)
+
+        if current_mtime <= prev_mtime:
+            new_state[file_key] = prev
+            continue
+
+        messages, total_lines = extract_fn(filepath, skip_lines=prev_lines)
+        if total_lines < prev_lines:
+            messages, total_lines = extract_fn(filepath, skip_lines=0)
+        all_messages.extend(messages)
+
+        new_state[file_key] = {
+            "mtime": current_mtime,
+            "lines_read": total_lines,
+        }
+
+        if max_messages > 0 and len(all_messages) >= max_messages:
+            reached_cap = True
+
+    return reached_cap
+
+
 def main():
-    parser = argparse.ArgumentParser(description="Extract user messages from Claude Code conversation logs")
-    parser.add_argument("--logs-dir", help="Path to project conversation logs directory（省略時はカレントディレクトリから自動推定）")
+    parser = argparse.ArgumentParser(description="Extract user messages from Claude Code / Codex conversation logs")
+    parser.add_argument("--logs-dir", help="Claude Code のログディレクトリ（省略時はカレントディレクトリから自動推定）")
+    parser.add_argument("--codex-logs-dir", help="Codex のログベースディレクトリ（省略時は ~/.codex を自動検出、--no-codex で無効化）")
+    parser.add_argument("--no-codex", action="store_true", help="Codex ログの読み込みを無効化する")
     parser.add_argument("--state-file", help="Path to last-sync.json state file（抽出/コミット時に必須）")
     parser.add_argument("--state-out", help="抽出フェーズで算出した状態を書き出す pending ファイル（本ファイルは触らない）")
     parser.add_argument("--commit", help="pending ファイルを --state-file へ原子的に昇格する（コミットフェーズ）")
@@ -196,7 +346,6 @@ def main():
     args = parser.parse_args()
 
     # 日本語を含む JSON を stdout へ出すため、出力を UTF-8 に固定する
-    # （非UTF-8コンソールでの UnicodeEncodeError を防ぐ）
     if hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
 
@@ -214,61 +363,58 @@ def main():
         commit_state(state_file, Path(args.commit))
         return
 
-    # 抽出フェーズ
+    # 抽出フェーズ: Claude Code ログ
     logs_dir = Path(args.logs_dir) if args.logs_dir else default_logs_dir()
     if not logs_dir.exists():
-        print(f"ERROR: logs dir not found: {logs_dir}\n"
+        print(f"ERROR: Claude logs dir not found: {logs_dir}\n"
               f"  --logs-dir で明示指定してください。", file=sys.stderr)
         sys.exit(1)
 
     state = load_state(state_file)
     sessions_state = state.get("sessions", {})
+    codex_sessions_state = state.get("codex_sessions", {})
 
     all_messages = []
-    new_state = dict(sessions_state)
+    new_sessions = dict(sessions_state)
+    new_codex_sessions = dict(codex_sessions_state)
 
-    jsonl_files = sorted(logs_dir.glob("*.jsonl"), key=lambda p: p.stat().st_mtime)
+    claude_files = sorted(logs_dir.glob("*.jsonl"), key=lambda p: p.stat().st_mtime)
+    reached_cap = _process_sessions(
+        claude_files, sessions_state, extract_from_session,
+        all_messages, new_sessions, args.max_messages, False,
+    )
 
-    for filepath in jsonl_files:
-        session_id = filepath.stem
-        current_mtime = filepath.stat().st_mtime
-        prev = sessions_state.get(session_id, {})
-        prev_mtime = prev.get("mtime", 0)
-        prev_lines = prev.get("lines_read", 0)
-
-        if current_mtime <= prev_mtime:
-            new_state[session_id] = prev
-            continue
-
-        # 同一 open で得た走査行数を lines_read にする（出力範囲としおりが必ず一致）。
-        messages, total_lines = extract_from_session(filepath, skip_lines=prev_lines)
-        if total_lines < prev_lines:
-            # ファイルが短縮/書き換えされている（append-only 前提が崩れた）。
-            # しおりより短いので skip 済みのまま 0 件になる。安全側に全行を読み直す
-            # （二重取得は起こりうるが取りこぼしより許容できる）。
-            messages, total_lines = extract_from_session(filepath, skip_lines=0)
-        all_messages.extend(messages)
-
-        new_state[session_id] = {
-            "mtime": current_mtime,
-            "lines_read": total_lines,
-        }
-
-        # ソフトキャップ: 上限超過セッションの途中で切らず、そのセッションを読み切ってから止める
-        if args.max_messages > 0 and len(all_messages) >= args.max_messages:
-            break
+    # 抽出フェーズ: Codex ログ（~/.codex が存在する場合に自動処理）
+    codex_file_count = 0
+    if not args.no_codex:
+        codex_base = Path(args.codex_logs_dir) if args.codex_logs_dir else default_codex_base_dir()
+        if codex_base.exists():
+            codex_files = find_codex_files(codex_base)
+            codex_file_count = len(codex_files)
+            reached_cap = _process_sessions(
+                codex_files, codex_sessions_state, extract_from_codex_session,
+                all_messages, new_codex_sessions, args.max_messages, reached_cap,
+            )
+        else:
+            print(f"INFO: Codex logs dir not found ({codex_base}), skipping.", file=sys.stderr)
 
     json.dump(all_messages, sys.stdout, ensure_ascii=False, indent=2)
 
     if args.state_out:
         from datetime import datetime
 
-        # 実行環境のローカルタイムゾーンで記録する（環境を問わず正しいオフセットになる）
         state["last_sync_at"] = datetime.now().astimezone().isoformat()
-        state["sessions"] = new_state
+        state["sessions"] = new_sessions
+        state["codex_sessions"] = new_codex_sessions
         save_state(Path(args.state_out), state)
 
-    print(f"\n--- Extracted {len(all_messages)} messages from {len([s for s in new_state if new_state[s] != sessions_state.get(s)])} new/updated sessions ---", file=sys.stderr)
+    updated_claude = len([s for s in new_sessions if new_sessions[s] != sessions_state.get(s)])
+    updated_codex = len([s for s in new_codex_sessions if new_codex_sessions[s] != codex_sessions_state.get(s)])
+    print(
+        f"\n--- Extracted {len(all_messages)} messages "
+        f"(claude: {updated_claude} sessions updated, codex: {updated_codex}/{codex_file_count} files updated) ---",
+        file=sys.stderr,
+    )
 
 
 if __name__ == "__main__":

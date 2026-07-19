@@ -5,10 +5,15 @@ description: "会話履歴からユーザーの興味プロファイルを生成
 
 # 興味プロファイル生成スキル
 
-Codex の会話履歴を分析し、ユーザーの興味プロファイルを `INTERESTS.md`（プロジェクトルート）に蓄積・更新する。
+**Claude Code** および **Codex (ChatGPT app)** の会話履歴を分析し、ユーザーの興味プロファイルを `INTERESTS.md`（プロジェクトルート）に蓄積・更新する。
+
+- Claude Code ログ: `~/.claude/projects/<エンコード済みパス>/*.jsonl`
+- Codex ログ: `~/.codex/sessions/YYYY/MM/DD/rollout-*.jsonl` + `~/.codex/archived_sessions/*.jsonl`
+  - バンドルID `com.openai.codex`（旧 Codex.app と統合された `ChatGPT.app`）
+  - `~/.codex` が存在しない場合はスキップ（エラーにならない）
 
 このスキルの責務は **「会話履歴から興味を抽出して蓄積する」ことだけ** に絞られている。
-普段どおり Codex と会話を重ねるほど、その履歴からプロファイルが自動的に育っていく。記事を読んで質問する、調べ物をする、意見を述べる——そうした日常の会話がそのままシグナルになる。
+普段どおり Claude や Codex と会話を重ねるほど、その履歴からプロファイルが自動的に育っていく。記事を読んで質問する、調べ物をする、意見を述べる——そうした日常の会話がそのままシグナルになる。
 
 このスキルには2つのモードがあります：
 
@@ -35,14 +40,16 @@ cron や `/loop` からの自動実行時は以下を厳守する：
 Pythonスクリプトで会話ログの差分抽出を行う。
 
 ```bash
-python3 .Codex/skills/interest-profile/scripts/extract_interests.py \
+python3 .claude/skills/interest-profile/scripts/extract_interest.py \
   --state-file "data/interests/last-sync.json" \
   --state-out "data/interests/last-sync.json.pending" \
   --max-messages 500
 ```
 
 **注意:**
-- `--logs-dir` は省略可。省略時はカレントディレクトリから対応するログディレクトリ（`~/.Codex/projects/<エンコード済みパス>`）を自動推定する。別プロジェクトのログを解析したい場合のみ `--logs-dir` で明示指定する。
+- `--logs-dir` は省略可。省略時はカレントディレクトリから対応するログディレクトリ（`~/.claude/projects/<エンコード済みパス>`）を自動推定する。別プロジェクトのログを解析したい場合のみ `--logs-dir` で明示指定する。
+- Codex ログは `~/.codex` が存在する場合に**自動的に同時抽出**される。無効化したい場合は `--no-codex` を付ける。Codex のベースディレクトリを変えたい場合は `--codex-logs-dir <path>` で指定する。
+- state ファイルには `sessions`（Claude）と `codex_sessions`（Codex）が別々に管理される。既存の state ファイルに `codex_sessions` がなければ空から開始する（全 Codex ログが初回一括抽出される）。
 - この段階では本ファイル `last-sync.json` は更新しない。`--state-out` で「進めるべき状態」を pending ファイル（`last-sync.json.pending`）に書き出すだけにとどめ、全処理が正常完了した後に Section 5 で原子的に昇格（commit）する。これによりトランザクション境界が保たれ、途中で失敗してもしおりは進まない。
 
 スクリプトの出力（JSON配列）を受け取る。抽出メッセージが0件の場合は、新規シグナルなしとしてSection 5の状態更新のみ行い終了してよい。
@@ -54,7 +61,7 @@ python3 .Codex/skills/interest-profile/scripts/extract_interests.py \
 スクリプトに直近分だけを出力させ、その出力を読む：
 
 ```bash
-python3 .Codex/skills/interest-profile/scripts/extract_interests.py \
+python3 .claude/skills/interest-profile/scripts/extract_interest.py \
   --recent-log "data/interests/interest-log.jsonl" \
   --recent-days 90
 ```
@@ -96,8 +103,12 @@ Section 1で抽出した新規ユーザーメッセージを分類する。
 各シグナルのJSON形式（interest-log.jsonl に1行1JSONで記録する）：
 
 ```json
-{"ts": "<ISO8601>", "session_id": "<セッションID>", "source": "conversation", "category": "<カテゴリ>", "intensity": <1-3>, "topic": "<トピック名>", "keywords": ["..."], "raw_excerpt": "<先頭200文字>"}
+{"ts": "<ISO8601>", "session_id": "<セッションID>", "source": "<source>", "category": "<カテゴリ>", "intensity": <1-3>, "topic": "<トピック名>", "keywords": ["..."], "raw_excerpt": "<先頭200文字>"}
 ```
+
+`source` の値:
+- `"conversation"` — Claude Code（既存エントリ、後方互換）
+- `"codex"` — Codex / ChatGPT app からの会話
 
 ### Section 4: INTERESTS.md の生成
 
@@ -177,7 +188,7 @@ INTERESTS.md は `INTERESTS.md`（プロジェクトルート）に保存する�
 2. pending ファイル（`last-sync.json.pending`）を本ファイルへ昇格（commit）する：
 
 ```bash
-python3 .Codex/skills/interest-profile/scripts/extract_interests.py \
+python3 .claude/skills/interest-profile/scripts/extract_interest.py \
   --state-file "data/interests/last-sync.json" \
   --commit "data/interests/last-sync.json.pending"
 ```

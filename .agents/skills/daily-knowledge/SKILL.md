@@ -14,7 +14,7 @@ metadata:
 
 個人情報プラットフォームの中核スキル。3軸の目的を毎日自動で推進する:
 
-1. **開発応用** — 技術スタックの最新動向を蓄積し、Codex との開発相談精度を向上させる
+1. **開発応用** — 技術スタックの最新動向を蓄積し、ClaudeとCodex両方との開発相談精度を向上させる
 2. **自己記録** — いつ何に興味を持ったかを週次ファイルにアーカイブする
 3. **世界情勢把握** — テック以外のグローバルニュース・文化・科学をカバーする
 
@@ -37,8 +37,9 @@ metadata:
     print("JINA_API_KEY configured" if key and key != "your_api_key_here" else "JINA_API_KEY missing")
     PY
     ```
-- **インストール済みスキル**: `/interest-profile`、`/deep-research`、`/nlm-skill`
-- **Python 依存パッケージ**: `uv pip install requests python-dotenv`（初回のみ）
+- **必須スキル**: `/interest-profile`
+- **任意スキル**: `/deep-research`（未導入時は各 SA の WebSearch フォールバックを使う）、`/nlm-skill`（月末の STEP 7 でのみ必要。未導入時は STEP 7 をスキップしてログへ記録する）
+- **Python 依存パッケージ**: `uv add requests python-dotenv`（初回のみ）。実行時はプロジェクトの `.venv/bin/python` を使う
 
 ---
 
@@ -162,38 +163,72 @@ Jina Reader が DNS・接続・HTTP 5xx で失敗した場合は最大1回だけ
 
 ### STEP 5: 週次 HTML レポート（日曜日のみ）
 
-> ⚠️ **このステップは Codex Sonnet 4.6 extended thinking (high) を使用すること。**
+> ⚠️ **このステップは Claude Sonnet 4.6 extended thinking (high) を使用すること。**
 
 今日が **日曜日** の場合のみ実行する:
 
-1. 今週の Tech・Other 両週次ファイルを読み込む
-2. `/hallmark` と `/ui-ux-pro-max` のガイドラインに従いデザインを決定する
-3. `data/reports/weekly/YYYY/WN.html` を生成する
+#### テンプレート選択
 
-デザイン方針:
-- ダーク系テーマ（AI 生成っぽいグラデーションは避ける）
-- セクション別カードレイアウト（Tech / 世界情勢 / 経済 / 文化 / 科学）
-- 各記事は見出し・日本語要約・出典リンクを含む
-- モバイルでも読みやすいレスポンシブデザイン
+1. `.hallmark/last-weekly-template` を読み込み、前回のテンプレート番号を確認する（存在しない場合はスキップ）
+2. 1〜6 からランダムに選択（前回番号と同じにならないよう除外する）
+3. 選択したテンプレート番号を `.hallmark/last-weekly-template` に書き込む
+
+#### コンテンツ生成
+
+4. 今週の Tech・Other 両週次ファイルを読み込む
+5. `data/reports/report-template/{N}/DESIGN.md` を読み込んでデザイントークン・Anti-pattern を把握する
+6. `data/reports/report-template/{N}/template.html` を読み込む
+7. 週次ファイルの内容を読み、各プレースホルダーを HTML 形式で置換する:
+   - `{{WEEK_LABEL}}` → 例: `W4 · 2026年6月22日〜28日`
+   - `{{GENERATED_DATE}}` → 今日の日付（YYYY-MM-DD）
+   - `{{TECH_ARTICLES}}` → Tech 週次ファイルの記事を DESIGN.md のスタイルに合った HTML に変換
+   - `{{OTHER_ARTICLES}}` → Other 週次ファイルの記事を HTML に変換
+   - テンプレート 2（Magazine）のみ別途: `{{OTHER_ARTICLES_WORLD}}`, `{{OTHER_ARTICLES_ECONOMY}}`, `{{OTHER_ARTICLES_SCIENCE}}`, `{{OTHER_ARTICLES_CULTURE}}` をカテゴリー別に分割して注入
+8. `data/reports/weekly/YYYY/WN.html` として保存する
+
+#### 記事 HTML の変換ルール（テンプレート共通基本構造）
+
+各テンプレートが `.article` / `.card` などの要素を持つ。変換時はテンプレートのクラス名に合わせること:
+
+- テンプレート 1 (Broadsheet): `<article class="article"><h3 class="article__headline"><a href="URL">タイトル</a></h3><div class="article__meta">SOURCE · DATE</div><p class="article__body">要約</p></article>`
+- テンプレート 2 (Magazine): `<article class="article"><div class="article__meta">SOURCE</div><h3 class="article__headline"><a href="URL">タイトル</a></h3><p class="article__body">要約</p></article>`
+- テンプレート 3 (Apple): `<article class="article"><h3 class="article__headline"><a href="URL">タイトル</a></h3><div class="article__meta">SOURCE · DATE</div><p class="article__body">要約</p></article>`
+- テンプレート 4 (Wabi): `<article class="article"><h3 class="article__headline"><a href="URL">タイトル</a></h3><div class="article__meta">SOURCE · DATE</div><p class="article__body">要約</p></article>`
+- テンプレート 5 (Linear): `<article class="article"><div class="article__main"><h3 class="article__headline"><a href="URL">タイトル</a></h3><p class="article__body">要約</p></div><div class="article__aside"><span class="article__source">SOURCE</span><span class="article__date">DATE</span></div></article>`
+- テンプレート 6 (Night Study): `<article class="card card--tech"><h3 class="card__headline"><a href="URL">タイトル</a></h3><div class="card__meta">SOURCE · DATE</div><p class="card__body">要約</p></article>` (Other は `card--other`)
+
+#### Hallmark Anti-Slop チェック（保存前に必ず確認）
+
+- サイドバーなし ✓
+- グラデーション背景なし ✓
+- 全カード border-left 色分けなし（T6 の box-shadow インジケーターは許可） ✓
+- CSS spacing 変数 5 種以内 ✓
+- カード hover 背景変更なし ✓
 
 ---
 
 ### STEP 6: 月次 HTML マガジン（月末のみ）
 
-> ⚠️ **このステップは Codex Sonnet 4.6 extended thinking (high) を使用すること。**
+> ⚠️ **このステップは Claude Sonnet 4.6 extended thinking (high) を使用すること。**
 
 今日が **その月の最終日** の場合のみ実行する:
 
-1. 当月の全週次ファイル（Technology/ + Other/ 両方）を読み込む
-2. `/hallmark`、`/ui-ux-pro-max`、`/frontend-design` のガイドラインに従いデザインを決定する
-3. `data/reports/monthly/YYYY/MM.html` を生成する
+#### テンプレート選択
 
-デザイン方針:
-- 雑誌・マガジンスタイル（自分だけのオリジナルマガジン）
-- 特集記事・月間ハイライト・コラムセクションを含む
-- 各カテゴリのベスト 3 記事を巻頭特集として掲載
-- 月間を通じた興味トレンドの変化をサマリーとして含む
-- 日本語メイン・英語原文引用あり
+1. `.hallmark/last-monthly-template` を読み込み、前月のテンプレート番号を確認する
+2. 当月に使用した週次テンプレート番号 (`.hallmark/last-weekly-template`) も除外対象に加える
+3. 1〜6 からランダムに選択（除外番号と被らないよう選ぶ）
+4. 選択したテンプレート番号を `.hallmark/last-monthly-template` に書き込む
+
+#### コンテンツ生成
+
+5. `data/reports/report-template/{N}/DESIGN.md` と `template.html` を読み込む
+6. 当月の全週次ファイル（Technology/ + Other/ 両方）を読み込む
+7. 月次マガジン向けに内容を整形:
+   - 各カテゴリのベスト 3 記事を選定して前半に掲載
+   - 月間を通じた技術トレンドと興味の変化をサマリーとして追加
+   - 全記事を週別に整理して後半に掲載
+8. `data/reports/monthly/YYYY/MM.html` として保存する
 
 ---
 
