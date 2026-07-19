@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<!-- Hallmark · macrostructure: Field Notes · genre: editorial · theme: Night Ledger · dark -->
+<!-- Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V4 -->
+<!-- Template 2: Night Ledger — 2026年7月15日〜19日 -->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W3 · 2026年7月15日〜21日 — My Knowledge</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    :root {
+      --color-bg: #111417;
+      --color-panel: #191d21;
+      --color-panel-2: #20262b;
+      --color-ink: #f0eee8;
+      --color-muted: #a6adb0;
+      --color-border: #394147;
+      --color-accent: #d9a441;
+      --color-accent-2: #83b7a5;
+      --font-display: Georgia, "Times New Roman", serif;
+      --font-body: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
+      --space-sm: .7rem;
+      --space-md: 1.2rem;
+      --space-lg: 2rem;
+      --space-xl: 4rem;
+    }
+    html, body { overflow-x: clip; }
+    body { margin: 0; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-body); line-height: 1.65; }
+    a { color: inherit; }
+    .masthead { max-width: 1180px; margin: 0 auto; padding: var(--space-xl) var(--space-lg) var(--space-lg); border-bottom: 1px solid var(--color-border); }
+    .eyebrow { color: var(--color-accent); font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
+    h1 { max-width: 760px; margin: .7rem 0; font: 600 clamp(2.6rem, 7vw, 6.6rem)/.96 var(--font-display); letter-spacing: -.045em; }
+    .dek { max-width: 670px; margin: 0; color: var(--color-muted); font-size: 1rem; }
+    .meta { margin-top: var(--space-md); color: var(--color-muted); font-size: .75rem; }
+    .index { max-width: 1180px; margin: 0 auto; padding: var(--space-md) var(--space-lg); display: flex; flex-wrap: wrap; gap: .7rem 1.2rem; border-bottom: 1px solid var(--color-border); }
+    .index a { color: var(--color-muted); font-size: .78rem; text-decoration: none; }
+    .index a:hover { color: var(--color-accent); }
+    .layout { max-width: 1180px; margin: 0 auto; padding: var(--space-lg); display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, .85fr); gap: var(--space-lg); }
+    .section { min-width: 0; padding: var(--space-md); background: var(--color-panel); border: 1px solid var(--color-border); }
+    .section--wide { grid-row: span 2; }
+    .section h2 { margin: 0 0 var(--space-md); font: 600 1.7rem/1.1 var(--font-display); }
+    .section h2 span { display: block; margin-bottom: .45rem; color: var(--color-accent); font: 700 .68rem var(--font-body); letter-spacing: .16em; text-transform: uppercase; }
+    .item { padding: var(--space-md) 0; border-top: 1px solid var(--color-border); }
+    .item:first-of-type { padding-top: 0; border-top: 0; }
+    .item h3 { margin: 0 0 .35rem; font: 600 1.16rem/1.2 var(--font-display); }
+    .item h3 a { text-decoration: none; }
+    .item h3 a:hover { color: var(--color-accent); }
+    .item p { margin: 0; color: var(--color-muted); font-size: .88rem; }
+    .tag { display: inline-block; margin-bottom: .5rem; color: var(--color-accent-2); font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    footer { max-width: 1180px; margin: 0 auto; padding: var(--space-md) var(--space-lg) var(--space-xl); color: var(--color-muted); font-size: .72rem; }
+    @media (max-width: 760px) { .masthead, .index, .layout, footer { padding-left: var(--space-md); padding-right: var(--space-md); } .layout { grid-template-columns: minmax(0, 1fr); } .section--wide { grid-row: auto; } }
+    @media (max-width: 420px) { h1 { font-size: 2.55rem; } .section { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="eyebrow">My Knowledge / Weekly Field Notes</div>
+    <h1>今週、世界は<br>どこへ動いたか。</h1>
+    <p class="dek">W3の収集から、エージェント基盤の実装、AIインフラへの資本集中、越境する災害、そして観測科学の新しい手がかりを抜き出した。</p>
+    <div class="meta">W3 · 2026年7月15日〜21日　｜　今回の収集: 7月15日〜19日　｜　生成: 2026-07-19 JST</div>
+  </header>
+  <nav class="index" aria-label="カテゴリー">
+    <a href="#technology">01 Technology</a><a href="#world">02 World</a><a href="#economy">03 Economy</a><a href="#culture">04 Culture</a><a href="#science">05 Science</a>
+  </nav>
+  <main class="layout">
+    <section class="section section--wide" id="technology">
+      <h2><span>01 / Technology</span>道具が「機能」から「仕事の場」へ</h2>
+      <article class="item"><div class="tag">Agent tooling</div><h3><a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Claude Codeは複数セッションを扱うハーネスへ</a></h3><p>バックグラウンドセッション、agent view、完了条件付きの継続実行など、CLIの中心が単発コマンドから仕事単位の管理へ移っている。</p></article>
+      <article class="item"><div class="tag">Desktop infrastructure</div><h3><a href="https://tauri.app/release/" target="_blank" rel="noopener">Tauri v2は依存グラフで更新する</a></h3><p>Rust crate、JS API、CLI、WebView層が同時に動く。アプリの更新ではなく、エコシステム全体の整合性を確認する運用が重要になる。</p></article>
+      <article class="item"><div class="tag">Open source</div><h3><a href="https://github.com/PostHog/posthog" target="_blank" rel="noopener">AIエージェントの観測が既存分析基盤へ接続</a></h3><p>PostHogのような基盤が、session replayやerror trackingをagentの診断文脈へまとめる。生成と評価の間を埋める道具が増えている。</p></article>
+      <article class="item"><div class="tag">Build systems</div><h3><a href="https://vite.dev/releases" target="_blank" rel="noopener">Viteはマイナー単位の更新管理が前提に</a></h3><p>セキュリティ修正のバックポート対象が複数系列にまたがるため、メジャー番号だけでなくマイナー系列とエコシステムCIを追う必要がある。</p></article>
+    </section>
+    <section class="section" id="economy">
+      <h2><span>03 / Economy</span>AIの次は電力と国家</h2>
+      <article class="item"><div class="tag">Capital</div><h3><a href="https://www.databricks.com/company/newsroom/press-releases/databricks-raising-strategic-round-funding-188-billion-valuation" target="_blank" rel="noopener">Databricksの評価額とAI基盤投資</a></h3><p>$188B評価額のterm sheetは、企業向けAIを支えるデータ基盤への資本集中を象徴する。</p></article>
+      <article class="item"><div class="tag">Energy</div><h3><a href="https://techcrunch.com/2026/07/17/nuclear-startup-valar-atomics-in-talks-to-raise-new-funding-at-6b-valuation/" target="_blank" rel="noopener">データセンターの電力制約が原子力へ波及</a></h3><p>Valar Atomicsの調達協議は未成立やが、AIインフラのボトルネックが電源側の資本テーマを押し上げている。</p></article>
+    </section>
+    <section class="section" id="world">
+      <h2><span>02 / World</span>災害は国境を越えて政治になる</h2>
+      <article class="item"><div class="tag">North America</div><h3><a href="https://apnews.com/article/21b616e6fef1af907abef4aba6f5dfb4" target="_blank" rel="noopener">山火事の煙が米加通商摩擦へ</a></h3><p>越境する煙への対応が追加関税の議論へ接続され、環境災害と経済外交の距離が縮まった。</p></article>
+      <article class="item"><div class="tag">South America</div><h3><a href="https://www.investing.com/news/world-news/brazil-justice-suspends-visits-to-expresident-bolsonaro-for-30-days-4799517" target="_blank" rel="noopener">司法手続きが政治的接触を制限</a></h3><p>ブラジル前大統領への訪問制限は、司法管理と政治対立が重なる局面を示す。</p></article>
+    </section>
+    <section class="section" id="culture">
+      <h2><span>04 / Culture</span>作品の外側も作品になる</h2>
+      <article class="item"><div class="tag">Music</div><h3><a href="https://pitchfork.com/reviews/albums/kelela-new-avatar/" target="_blank" rel="noopener">R&Bがギター音楽を取り込む</a></h3><p>Kelelaの新作レビューでは、R&Bを核にシューゲイズやパンクを組み込む方向転換が描かれた。</p></article>
+      <article class="item"><div class="tag">Art</div><h3><a href="https://www.wallpaper.com/art/exhibitions-shows/tate-modern-ana-mendieta-review" target="_blank" rel="noopener">Ana Mendietaの「身体と自然」を再展示</a></h3><p>Tate Modernの大規模展は、作品の再制作や英国初公開を通じて作家像を見直す機会になっている。</p></article>
+    </section>
+    <section class="section" id="science">
+      <h2><span>05 / Science</span>遠いものを、構造として見る</h2>
+      <article class="item"><div class="tag">Astronomy</div><h3><a href="https://www.sciencedaily.com/releases/2026/07/260716023601.htm" target="_blank" rel="noopener">JWSTがブラックホールの燃料循環を捉える</a></h3><p>冷却ガスが中心へ流れ込む自己調整的な循環の観測的手がかり。単一銀河の観測で、一般化には追加研究が要る。</p></article>
+      <article class="item"><div class="tag">Public health</div><h3><a href="https://www.sciencedaily.com/releases/2026/07/260717033213.htm" target="_blank" rel="noopener">人工甘味料と認知機能の観察研究</a></h3><p>高摂取群ほど低下が速かったという関連が報告されたが、観察研究であり因果関係は示されていない。</p></article>
+    </section>
+  </main>
+  <footer>出典は各項目のリンク先。速報・協議中の案件・観察研究は、本文中で確度と限界を区別している。</footer>
+</body>
+</html>
