@@ -1,458 +1,55 @@
 <!DOCTYPE html>
-<!-- Hallmark · macrostructure: Newsprint · genre: editorial · theme: Broadsheet · light -->
-<!-- Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 -->
-<!-- Template 1: Broadsheet — W4 2026年6月22日〜28日 -->
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>W4 · 2026年6月22日〜28日 — My Knowledge</title>
+  <title>W4 · 2026年7月22日〜28日 — My Knowledge</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,700&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-    :root {
-      --color-paper: oklch(97% 0.015 80);
-      --color-ink: oklch(12% 0.01 220);
-      --color-ink-2: oklch(40% 0.01 220);
-      --color-accent: oklch(42% 0.18 25);
-      --color-border: oklch(82% 0.01 80);
-      --font-display: "Playfair Display", Georgia, serif;
-      --font-body: "Source Serif 4", Georgia, serif;
-      --font-ui: system-ui, sans-serif;
-      --space-sm: 0.75rem;
-      --space-md: 1.5rem;
-      --space-lg: 3rem;
-      --space-xl: 5rem;
-    }
-
-    html { overflow-x: clip; }
-    body {
-      background: var(--color-paper);
-      color: var(--color-ink);
-      font-family: var(--font-body);
-      font-size: 1rem;
-      line-height: 1.65;
-      min-height: 100dvh;
-    }
-
-    .masthead {
-      border-top: 4px solid var(--color-ink);
-      border-bottom: 1px solid var(--color-border);
-      padding: var(--space-sm) var(--space-lg);
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 0.5rem;
-    }
-    .masthead__title {
-      font-family: var(--font-display);
-      font-weight: 700;
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-      letter-spacing: -0.02em;
-      line-height: 1;
-    }
-    .masthead__meta {
-      font-family: var(--font-ui);
-      font-size: 0.75rem;
-      color: var(--color-ink-2);
-      text-align: right;
-      line-height: 1.4;
-    }
-    .masthead__week { font-weight: 600; color: var(--color-ink); }
-
-    .cat-nav {
-      border-bottom: 2px solid var(--color-ink);
-      padding: 0.5rem var(--space-lg);
-      display: flex;
-      gap: var(--space-md);
-      align-items: center;
-      flex-wrap: wrap;
-      overflow-x: auto;
-      scrollbar-width: none;
-    }
-    .cat-nav::-webkit-scrollbar { display: none; }
-    .cat-nav__item {
-      font-family: var(--font-ui);
-      font-size: 0.7rem;
-      font-weight: 600;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--color-ink-2);
-      text-decoration: none;
-      white-space: nowrap;
-    }
-    .cat-nav__item:hover { color: var(--color-accent); }
-    .cat-nav__sep { width: 1px; height: 0.9em; background: var(--color-border); flex-shrink: 0; }
-
-    .main {
-      display: grid;
-      grid-template-columns: 3fr 2fr;
-      max-width: 1280px;
-      margin: 0 auto;
-    }
-
-    .col-tech {
-      padding: var(--space-md) var(--space-lg) var(--space-lg);
-      border-right: 1px solid var(--color-border);
-    }
-    .col-other {
-      padding: var(--space-md) var(--space-lg) var(--space-lg);
-    }
-
-    .col-header {
-      font-family: var(--font-ui);
-      font-size: 0.68rem;
-      font-weight: 700;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--color-ink-2);
-      border-top: 2px solid var(--color-ink);
-      padding-top: 0.4rem;
-      margin-bottom: var(--space-md);
-    }
-
-    .article {
-      padding-bottom: var(--space-md);
-      margin-bottom: var(--space-md);
-      border-bottom: 1px solid var(--color-border);
-    }
-    .article:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-    .article__headline {
-      font-family: var(--font-display);
-      font-weight: 600;
-      font-size: 1.2rem;
-      line-height: 1.25;
-      margin-bottom: 0.35rem;
-    }
-    .article__headline a { color: var(--color-ink); text-decoration: none; }
-    .article__headline a:hover { color: var(--color-accent); }
-    .article__meta {
-      font-family: var(--font-ui);
-      font-size: 0.72rem;
-      color: var(--color-ink-2);
-      margin-bottom: 0.5rem;
-      display: flex;
-      gap: 0.5rem;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .sep { color: var(--color-border); }
-    .article__body { font-size: 0.9rem; line-height: 1.65; }
-
-    .article--lead .article__headline { font-size: 1.6rem; font-weight: 700; }
-
-    .section-divider {
-      font-family: var(--font-ui);
-      font-size: 0.65rem;
-      font-weight: 700;
-      letter-spacing: 0.16em;
-      text-transform: uppercase;
-      color: var(--color-ink-2);
-      border-top: 1px solid var(--color-border);
-      padding-top: 0.35rem;
-      margin: var(--space-md) 0 var(--space-sm);
-    }
-
-    .stars { color: var(--color-ink-2); font-family: var(--font-ui); font-size: 0.68rem; }
-
-    .footer {
-      border-top: 4px double var(--color-border);
-      padding: var(--space-sm) var(--space-lg);
-      font-family: var(--font-ui);
-      font-size: 0.7rem;
-      color: var(--color-ink-2);
-      text-align: center;
-    }
-
-    @media (max-width: 768px) {
-      .masthead, .cat-nav, .footer { padding-left: var(--space-md); padding-right: var(--space-md); }
-      .main { grid-template-columns: 1fr; }
-      .col-tech { border-right: none; border-bottom: 2px solid var(--color-border); padding: var(--space-md); }
-      .col-other { padding: var(--space-md); }
-    }
-    @media (max-width: 480px) {
-      .masthead__title { font-size: 1.5rem; }
-      .article--lead .article__headline { font-size: 1.3rem; }
-    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    :root{--paper:#fff;--ink:#17191d;--muted:#73777d;--line:#dedfe1;--accent:#263b5c;--hero:#171c25;--sm:1rem;--md:2rem;--lg:4rem;--xl:7rem}
+    body{background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.6}
+    .hero{background:var(--hero);color:#fff;padding:var(--xl) var(--lg)}
+    .eyebrow,.meta,.section-title{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+    .eyebrow{color:#aeb4bd;margin-bottom:var(--sm)}
+    h1{font:400 clamp(2.8rem,7vw,6rem)/.95 "DM Serif Display",Georgia,serif;max-width:18ch;margin-bottom:var(--md)}
+    .hero .meta{color:#aeb4bd;display:flex;gap:var(--md);letter-spacing:normal;text-transform:none}
+    nav{border-bottom:1px solid var(--line);display:flex;overflow:auto;padding:0 var(--lg)}
+    button{background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;font:500 .78rem "DM Sans",sans-serif;letter-spacing:.08em;padding:1rem 1.25rem;text-transform:uppercase;white-space:nowrap}
+    button.active{border-bottom-color:var(--ink);color:var(--ink)}
+    main{margin:auto;max-width:1280px;padding:var(--md) var(--lg) var(--xl)}
+    section{display:none} section.active{display:block}
+    .section-title{border-bottom:2px solid var(--ink);color:var(--muted);margin-bottom:var(--sm);padding-bottom:.5rem}
+    .grid{display:grid;gap:var(--md);grid-template-columns:repeat(3,1fr)}
+    article{border-top:1px solid var(--line);padding:var(--sm) 0}
+    h2{font:400 1.2rem/1.2 "DM Serif Display",Georgia,serif;margin-bottom:.5rem}
+    h2 a{color:var(--ink);text-decoration:none} h2 a:hover{color:var(--accent)}
+    article .meta{color:var(--muted);font-size:.73rem;letter-spacing:normal;margin-bottom:.5rem;text-transform:none}
+    article p{color:var(--muted);font-size:.88rem;line-height:1.6}
+    footer{border-top:1px solid var(--line);color:var(--muted);font-size:.73rem;padding:var(--sm) var(--lg);text-align:center}
+    @media(max-width:900px){.hero,main,nav,footer{padding-left:var(--sm);padding-right:var(--sm)}.grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:600px){.hero{padding-bottom:var(--lg);padding-top:var(--lg)}.grid{grid-template-columns:1fr}}
   </style>
 </head>
 <body>
-
-  <header class="masthead">
-    <div class="masthead__title">MY KNOWLEDGE</div>
-    <div class="masthead__meta">
-      <div class="masthead__week">W4 · 2026年6月22日〜28日</div>
-      <div>2026-06-22 生成</div>
-    </div>
-  </header>
-
-  <nav class="cat-nav" aria-label="カテゴリー">
-    <a class="cat-nav__item" href="#tech">Technology</a>
-    <span class="cat-nav__sep" aria-hidden="true"></span>
-    <a class="cat-nav__item" href="#world">World Affairs</a>
-    <span class="cat-nav__sep" aria-hidden="true"></span>
-    <a class="cat-nav__item" href="#economy">Economy</a>
-    <span class="cat-nav__sep" aria-hidden="true"></span>
-    <a class="cat-nav__item" href="#science">Science</a>
-    <span class="cat-nav__sep" aria-hidden="true"></span>
-    <a class="cat-nav__item" href="#culture">Culture</a>
-  </nav>
-
-  <main class="main">
-
-    <section class="col-tech" id="tech" aria-label="Technology">
-      <div class="col-header">Technology &amp; Development</div>
-
-      <div class="section-divider">GitHub Trending</div>
-
-      <article class="article article--lead">
-        <h3 class="article__headline">
-          <a href="https://github.com/chopratejas/headroom" target="_blank" rel="noopener">chopratejas/headroom — LLMへの投入前にトークンを圧縮するMCPサーバー</a>
-        </h3>
-        <div class="article__meta">
-          <span>GitHub Trending</span><span class="sep">·</span>
-          <span class="stars">★ 2,624 today</span><span class="sep">·</span><span>2026-06-22</span>
-        </div>
-        <p class="article__body">ログやRAGチャンクをLLM投入前に圧縮し、ツール出力のトークン量削減を狙うライブラリ兼MCPサーバー。コンテキスト消費を抑えながら関連情報を維持する設計で、今週最大の注目を集めた。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://github.com/palmier-io/palmier-pro" target="_blank" rel="noopener">palmier-io/palmier-pro — AI支援macOS向け動画編集アプリ</a>
-        </h3>
-        <div class="article__meta">
-          <span>GitHub Trending</span><span class="sep">·</span><span class="stars">★ 1,834 today</span>
-        </div>
-        <p class="article__body">AI支援を組み込んだmacOS向け動画編集アプリ。ネイティブ品質の編集体験にAI機能を統合したアプローチが注目を集めた。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://github.com/penpot/penpot" target="_blank" rel="noopener">penpot/penpot — デザインとコードの協業オープンソースツール</a>
-        </h3>
-        <div class="article__meta">
-          <span>GitHub Trending</span><span class="sep">·</span><span class="stars">★ 1,135 today</span>
-        </div>
-        <p class="article__body">デザインとコードの協業に焦点を当てたオープンソースのデザインツール。Figma代替として、エンジニアとデザイナーの橋渡しを目指す。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://github.com/DeusData/codebase-memory-mcp" target="_blank" rel="noopener">DeusData/codebase-memory-mcp — コードベース永続知識グラフMCP</a>
-        </h3>
-        <div class="article__meta">
-          <span>GitHub Trending</span><span class="sep">·</span><span class="stars">★ 1,032 today</span>
-        </div>
-        <p class="article__body">コードベースを永続的な知識グラフへ索引化し、AIエージェントの検索コスト削減を狙うMCPサーバー。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://github.com/calesthio/OpenMontage" target="_blank" rel="noopener">calesthio/OpenMontage — AIコーディングから動画制作を自動化</a>
-        </h3>
-        <div class="article__meta">
-          <span>GitHub Trending</span><span class="sep">·</span><span class="stars">★ 987 today</span>
-        </div>
-        <p class="article__body">12の制作パイプラインと52ツールを備え、AIコーディングアシスタントから動画制作を自動化するオープンソース基盤。</p>
-      </article>
-
-      <div class="section-divider">Hacker News Top</div>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://apertvs.ai/" target="_blank" rel="noopener">Apertus — 主権AIを意識したオープン基盤モデル</a>
-        </h3>
-        <div class="article__meta"><span>Hacker News</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">主権AIを意識したオープンな基盤モデル。国家や組織が外部依存なくAIを運用できる設計思想を体現し、コミュニティの注目を集めた。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://github.com/raiyanyahya/recall" target="_blank" rel="noopener">Show HN: Recall — Claude Code向けローカルプロジェクト記憶ツール</a>
-        </h3>
-        <div class="article__meta"><span>Hacker News</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">Claude Code向けにプロジェクト記憶をローカル保存・検索するツール。セッション間でコンテキストを維持しやすくする実用的なアプローチとして開発者コミュニティで注目された。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://openjsf.org/blog/burnout-is-real-for-open-source-maintainers" target="_blank" rel="noopener">OSSメンテナーの燃え尽き — 持続可能なコミュニティ運営の必要性</a>
-        </h3>
-        <div class="article__meta"><span>OpenJS Foundation</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">OSSメンテナーの燃え尽きと持続可能なコミュニティ運営の必要性を扱う。AI時代に増す需要と個人の限界の乖離が議論の背景にある。</p>
-      </article>
-
-      <div class="section-divider">Claude Code · エージェントオーケストレーション</div>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://github.com/openai/codex/releases/tag/rust-v0.141.0" target="_blank" rel="noopener">Codex CLI rust-v0.141.0 — E2E暗号化とスレッド単位MCP有効化</a>
-        </h3>
-        <div class="article__meta"><span>GitHub Releases · OpenAI</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">リモート実行のE2E暗号化、環境固有の作業ディレクトリ保持、スレッド単位のMCP有効化を追加。長時間のエージェント運用で安全性と観測性が改善された。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://github.com/anthropics/claude-code/releases/tag/v2.1.185" target="_blank" rel="noopener">Claude Code v2.1.185 — 無通信判定を20秒へ延長</a>
-        </h3>
-        <div class="article__meta"><span>Anthropic</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">API応答停止の警告を明確化し、無通信判定を10秒から20秒へ延長。長時間処理の一時的な遅延を障害と誤認しにくくなった。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://dev.to/claudeguide/claude-code-skills-explained-what-they-are-when-to-use-them-2026-2370" target="_blank" rel="noopener">Claude Code Skills — SKILL.mdとCLAUDE.mdの使い分け</a>
-        </h3>
-        <div class="article__meta"><span>dev.to</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">SKILL.mdを再利用可能な手順、CLAUDE.mdを常時必要な文脈として使い分ける。参照資料を必要時だけ読む構成でコンテキスト消費を抑制。</p>
-      </article>
-
-      <div class="section-divider">Web情報取得 · 知識管理</div>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://zenn.dev/suwash/articles/jina-reader_20260403" target="_blank" rel="noopener">Jina AI Reader — RAG・キャッシュ・SPA取得の完全ガイド</a>
-        </h3>
-        <div class="article__meta"><span>Zenn</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">ReaderとSearch APIをRAG、キャッシュ、レート制限、SPA取得まで掘り下げる。定常収集では指数バックオフを使い、鮮度が必要な場合だけキャッシュを無効化する設計が有効。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://blog.google/innovation-and-ai/products/notebooklm/better-research-notebooklm/" target="_blank" rel="noopener">NotebookLM — コード実行を伴う調査への拡張</a>
-        </h3>
-        <div class="article__meta"><span>Google Blog</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">安全なクラウド実行環境と100以上のスキルを導入し、コード実行を伴う調査へ拡張。出典表示を維持しながら自動化と信頼性を両立する設計。</p>
-      </article>
-
-    </section>
-
-    <section class="col-other" aria-label="World, Economy, Science, Culture">
-
-      <div class="col-header" id="world">World Affairs</div>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://apnews.com/article/4bbde727c7095c4ad9da0285ca79f1e1" target="_blank" rel="noopener">米・イラン交渉2日目 — レバノン「衝突回避セル」設置で合意</a>
-        </h3>
-        <div class="article__meta"><span>AP News</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">仲介国は前向きな進展を発表したが、イスラエル軍駐留・核問題・制裁解除は未解決のまま。ガザ停戦の実効性が改めて問われている。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://apnews.com/article/1bd4d0980a353fa0f8221040215e6435" target="_blank" rel="noopener">クリミア、民間向けガソリン販売停止 — ウクライナの攻撃圧力</a>
-        </h3>
-        <div class="article__meta"><span>AP News</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">ウクライナの石油施設攻撃が占領統治と住民生活にも圧力。NATOは核能力の近代化で合意し、欧州の負担増と核抑止重視を示した。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://www.thedailystar.net/news/world/news/taiwan-hold-combat-readiness-drills-4204711" target="_blank" rel="noopener">台湾、中国軍の奇襲を想定した即応演習を開始</a>
-        </h3>
-        <div class="article__meta"><span>The Daily Star</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">通常演習が実戦転じるシナリオを採用。同日に中国軍機21機を確認し、儀礼的訓練から現実的な奇襲対処へ重点を移している。</p>
-      </article>
-
-      <div class="section-divider" id="economy">Economy &amp; Startups</div>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://techcrunch.com/2026/06/15/spacexs-biggest-ever-ipo-just-grew-to-85-7-billion-raised/" target="_blank" rel="noopener">SpaceX IPO調達額 $85.7B — 史上最大規模</a>
-        </h3>
-        <div class="article__meta"><span>TechCrunch</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">史上最大規模のIPO調達。宇宙・AI計算資源の長期成長へ公開市場の大きな期待が集まっている。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://techcrunch.com/2026/06/15/sarvam-becomes-indias-newest-ai-unicorn-with-234-million-funding-round-led-by-hcltech/" target="_blank" rel="noopener">Sarvam $234M調達 — インド最新AIユニコーン、評価額 $1.5B</a>
-        </h3>
-        <div class="article__meta"><span>TechCrunch</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">インド独自のAI基盤開発を加速。同週、NewCore($66M)、Respond.io($62.5M)、Pramaana Labs($27M) など複数のAI関連ラウンドが確認された。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://techcrunch.com/2026/06/18/the-11-standout-startups-from-ycs-demo-day-according-to-vcs/" target="_blank" rel="noopener">YC Spring 2026 — 防衛・ロボティクス・AI基盤に資金集中</a>
-        </h3>
-        <div class="article__meta"><span>TechCrunch</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">少なくとも2社が$175M超の評価額。具体的な業務・安全保障用途への選別が強まる傾向が見られた。</p>
-      </article>
-
-      <div class="section-divider" id="science">Science &amp; Space</div>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://www.nature.com/articles/s41586-026-10675-5" target="_blank" rel="noopener">医療AI「MIRA」— 専門医群を上回る診断精度を実証</a>
-        </h3>
-        <div class="article__meta"><span>Nature</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">電子健康記録内で問診から治療計画まで行うAIエージェント。専門医群を上回る診断精度を示したが、実臨床での安全性確認は前向き試験が必要。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://www.nature.com/articles/s41586-026-10617-1" target="_blank" rel="noopener">差動原子干渉計 — 重力波・暗黒物質探索の新測定原理</a>
-        </h3>
-        <div class="article__meta"><span>Nature</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">ストロンチウム87を使う差動原子干渉計が標準量子限界の感度を維持できることを実証。重力波や超軽量暗黒物質探索への道を拓く。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://www.nature.com/articles/s41586-026-10664-8" target="_blank" rel="noopener">永久凍土融解とCO₂ — 岩石風化が放出を相殺する可能性</a>
-        </h3>
-        <div class="article__meta"><span>Nature</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">青海チベット高原では永久凍土被覆減少に伴い岩石風化による炭素吸収が増える傾向を確認。気候モデルへの組み込みが注目される。</p>
-      </article>
-
-      <div class="section-divider" id="culture">Culture &amp; Entertainment</div>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://apnews.com/article/72cff10361dd338ebd54aea963d77ee8" target="_blank" rel="noopener">『Toy Story 5』シリーズ最高 初週 $1.6億の興収</a>
-        </h3>
-        <div class="article__meta"><span>AP News</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">6月19日公開、北米初週 $1.6億で同シリーズ最高記録。玩具とスクリーン文化の衝突を扱い、長寿シリーズの底力を示した。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://pitchfork.com/reviews/albums/pond-terrestrials/" target="_blank" rel="noopener">Pond『Terrestrials』— 環境崩壊と企業権力を扱うサイケロック</a>
-        </h3>
-        <div class="article__meta"><span>Pitchfork</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">豪州のアイデンティティと企業権力を扱う切迫感のある作品。今週のr/indieheadsで最注目の新譜として言及された。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://www.reddit.com/r/anime/comments/1u8ea01/crunchyroll_summer_2026_anime_season_lineup/" target="_blank" rel="noopener">Crunchyroll 2026年夏アニメ — 『Re:ゼロ』第4期ほか大型編成</a>
-        </h3>
-        <div class="article__meta"><span>Crunchyroll</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">『Re:ゼロ』第4期、『無職転生』第3期などを含む大型編成。約600票を集め、配信先・ローカライズをめぐる議論が活発。</p>
-      </article>
-
-      <article class="article">
-        <h3 class="article__headline">
-          <a href="https://www.jpf.go.jp/e/about/press/2026/dl/2026-004e.pdf" target="_blank" rel="noopener">ヴェネチア・ビエンナーレ日本館 — アーティゾン美術館で帰国展</a>
-        </h3>
-        <div class="article__meta"><span>Japan Foundation</span><span class="sep">·</span><span>2026-06-22</span></div>
-        <p class="article__body">第61回ヴェネチア・ビエンナーレ日本館展示の帰国展が6月19日に開幕。国際展で提示された日本の現代表現を国内で再検証する機会となる。</p>
-      </article>
-
-    </section>
-
+  <header class="hero"><div class="eyebrow">My Knowledge</div><h1>W4 · 2026年7月22日〜28日</h1><div class="meta"><span>2026-07-26 生成</span><span>週次レポート</span></div></header>
+  <nav aria-label="カテゴリー"><button class="active" data-tab="tech">Technology</button><button data-tab="world">World Affairs</button><button data-tab="economy">Economy</button><button data-tab="science">Science</button><button data-tab="culture">Culture</button></nav>
+  <main>
+    <section class="active" id="tech"><div class="section-title">Technology &amp; Development</div><div class="grid">
+      <article><h2><a href="https://github.blog/changelog/2026-07-23-copilot-cloud-agent-for-linear-is-now-generally-available/">Copilot cloud agent for Linear is now generally available</a></h2><div class="meta">GitHub Changelog · 2026-07-23</div><p>LinearのIssueから非同期に解析・実装・ドラフトPR・レビュー依頼までをつなぐ。モデル、custom agent、ブランチと一時実行環境を含む運用設計が焦点になる。</p></article>
+      <article><h2><a href="https://developers.googleblog.com/en/run-ray-on-tpu-part-1-the-foundations/">Run Ray on TPU, Part 1</a></h2><div class="meta">Google Developers Blog · 2026-07-20</div><p>Ray 2.55でGoogle Cloud TPUが第一級アクセラレーターとなり、TPUスライスのトポロジーと配置が分散実行の要点になる。</p></article>
+      <article><h2><a href="https://developers.googleblog.com/run-ray-on-tpu-part-2-ray-ai-libraries/">Run Ray on TPU, Part 2</a></h2><div class="meta">Google Developers Blog · 2026-07-24</div><p>Ray Serve・Data・TrainをTPUスライスで使う具体例を示し、入力シャーディング、チェックポイント、障害復旧までを扱う。</p></article>
+      <article><h2><a href="https://github.blog/changelog/2026-07-24-claude-opus-5-is-now-available-in-github-copilot/">Claude Opus 5 is now available in GitHub Copilot</a></h2><div class="meta">GitHub Changelog · 2026-07-24</div><p>VS Code、CLI、cloud agent、Xcodeなどへの段階展開。利用プランと管理者ポリシーを含む実運用条件が明記された。</p></article>
+      <article><h2><a href="https://github.blog/changelog/">Copilot usage metrics impact dashboard</a></h2><div class="meta">GitHub Changelog · 2026-07-22</div><p>Copilot利用量をモデル選択・コスト・品質評価のループへ接続する観測設計の入口として記録する。</p></article>
+    </div></section>
+    <section id="world"><div class="section-title">World Affairs</div><div class="grid"><article><h2>今回は採用なし</h2><div class="meta">SA3 · 2026-07-26</div><p>主要報道機関の個別記事本文を十分に確認できなかったため、速報性のある国際ニュースは採用しなかった。</p></article></div></section>
+    <section id="economy"><div class="section-title">Economy &amp; Startups</div><div class="grid"><article><h2><a href="https://techcrunch.com/2026/07/20/natural-raises-30m-to-reinvent-payments-for-ai-agents-and-take-on-stripe/">Natural raises $30M</a></h2><div class="meta">TechCrunch · 2026-07-20</div><p>AIエージェントが資金を移動・保管・回収し、人間や他のエージェントと取引する金融基盤を構築する。</p></article></div></section>
+    <section id="science"><div class="section-title">Science &amp; Space</div><div class="grid"><article><h2><a href="https://www.nature.com/articles/d41586-026-02332-8">White House rolls out AI funding</a></h2><div class="meta">Nature · 2026-07-24</div><p>約280チームがAIを科学課題へ適用する助成対象に選ばれた一方、研究費配分の組み替えには議会・研究者から批判も出ている。</p></article><article><h2><a href="https://www.nature.com/articles/s41586-026-10783-2">Verification of the Outer Space Treaty with cosmic protons</a></h2><div class="meta">Nature · 2026-07-08</div><p>高エネルギー陽子が誘発する中性子を使い、衛星の核兵器搭載を検証する概念・実現可能性を示した査読済み研究。</p></article></div></section>
+    <section id="culture"><div class="section-title">Culture &amp; Entertainment</div><div class="grid"><article><h2><a href="https://apnews.com/article/a50817b0eff18e63cefe9825b921d4f7">Music, Fashion, Film</a></h2><div class="meta">AP News · 2026-07-23</div><p>Charli xcxの新作を、前作後の期待とポップ、ロック、ハイパーポップの境界を揺さぶる方向転換から論じる。</p></article><article><h2><a href="https://www.universalmusic.ca/2026/07/23/adela-announces-debut-album-prima-due-september-4th-releases-new-single-and-music-video-aint-in-laout-now/">ADÉLA announces debut album PRIMA</a></h2><div class="meta">Universal Music Canada · 2026-07-23</div><p>デビューアルバム『PRIMA』を9月4日に発売し、新曲とミュージックビデオも案内した。</p></article></div></section>
   </main>
-
-  <footer class="footer">
-    My Knowledge Weekly · W4 · 2026年6月22日〜28日 · 個人情報プラットフォーム
-  </footer>
-
+  <footer>My Knowledge Weekly · W4 · 2026年7月22日〜28日</footer>
+  <script>document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('button,section').forEach(e=>e.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active')}));</script>
 </body>
 </html>
