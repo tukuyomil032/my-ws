@@ -77,3 +77,4 @@ WebSearch: site:reddit.com/r/webdev hot today
 - 既存週次ファイルに同じ `owner/repo` がある場合、再度 Trending に出ていても候補止まりにする。新しい release、security advisory、major funding など別の新事実を確認できる場合だけ採用する
 - スター数はISO 8601相当の取得日時・タイムゾーンを併記できる場合だけ、`1.2k` などの略記で記録してよい。取得時点が不明なら数値を省く
 - Reddit は投稿タイトルのみ把握できた場合も URL なしで記録しない（`site:` 検索で取得できた URL を使う）
+- Reddit の検索結果・一覧ページ・RSS見出し・投稿タイトルだけの候補は発見入口に限る。採用には個別投稿の公開本文または主張を裏付ける一次ソースを確認し、snippet-only の候補は原則採用しない
