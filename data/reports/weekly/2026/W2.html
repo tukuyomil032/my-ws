@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<!-- Hallmark · macrostructure: Marquee Hero · genre: editorial · theme: Magazine · light -->
+<!-- Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 -->
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>W2 · 2026年8月8日〜14日 — My Knowledge</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-paper: oklch(100% 0 0);
+      --color-ink: oklch(15% 0.005 240);
+      --color-ink-2: oklch(45% 0.005 240);
+      --color-accent: oklch(28% 0.06 245);
+      --color-border: oklch(88% 0.005 240);
+      --color-hero-bg: oklch(12% 0.008 245);
+      --font-display: "DM Serif Display", Georgia, serif;
+      --font-body: "DM Sans", system-ui, sans-serif;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 4rem;
+      --space-xl: 7rem;
+    }
+
+    html { overflow-x: clip; }
+    body {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 1rem;
+      line-height: 1.6;
+      min-height: 100dvh;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: var(--color-hero-bg);
+      color: #fff;
+      padding: var(--space-xl) var(--space-lg);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero__eyebrow {
+      font-family: var(--font-body);
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: var(--space-sm);
+    }
+    .hero__title {
+      font-family: var(--font-display);
+      font-size: clamp(2.8rem, 7vw, 6rem);
+      line-height: 0.95;
+      letter-spacing: -0.02em;
+      max-width: 18ch;
+      margin-bottom: var(--space-md);
+    }
+    .hero__meta {
+      font-family: var(--font-body);
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.55);
+      display: flex;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+    }
+    .hero__meta span { display: flex; gap: 0.4em; align-items: center; }
+
+    /* ── Tab nav ── */
+    .tab-nav {
+      border-bottom: 1px solid var(--color-border);
+      padding: 0 var(--space-lg);
+      display: flex;
+      gap: 0;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .tab-nav::-webkit-scrollbar { display: none; }
+    .tab-btn {
+      font-family: var(--font-body);
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--color-ink-2);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      padding: 1rem 1.25rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: color 0.15s, border-color 0.15s;
+      margin-bottom: -1px;
+    }
+    .tab-btn:hover { color: var(--color-ink); }
+    .tab-btn.is-active {
+      color: var(--color-ink);
+      border-bottom-color: var(--color-ink);
+    }
+
+    /* ── Content area ── */
+    .content-area {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: var(--space-md) var(--space-lg) var(--space-xl);
+    }
+    .tab-content { display: none; }
+    .tab-content.is-active { display: block; }
+
+    /* ── Article grid ── */
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-md);
+    }
+
+    /* ── Article card ── */
+    .article {
+      padding: var(--space-sm) 0;
+      border-top: 1px solid var(--color-border);
+    }
+    .article__headline {
+      font-family: var(--font-display);
+      font-size: 1.2rem;
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+    }
+    .article__headline a {
+      color: var(--color-ink);
+      text-decoration: none;
+    }
+    .article__headline a:hover { color: var(--color-accent); }
+    .article__meta {
+      font-size: 0.73rem;
+      color: var(--color-ink-2);
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+    .article__body {
+      font-size: 0.88rem;
+      line-height: 1.6;
+      color: var(--color-ink-2);
+    }
+
+    .section-header {
+      font-family: var(--font-body);
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-ink-2);
+      margin-bottom: var(--space-sm);
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--color-ink);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      border-top: 1px solid var(--color-border);
+      padding: var(--space-sm) var(--space-lg);
+      font-size: 0.73rem;
+      color: var(--color-ink-2);
+      text-align: center;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .article-grid { grid-template-columns: repeat(2, 1fr); }
+      .hero, .content-area, .tab-nav, .footer { padding-left: var(--space-sm); padding-right: var(--space-sm); }
+    }
+    @media (max-width: 600px) {
+      .article-grid { grid-template-columns: 1fr; }
+      .hero { padding: var(--space-lg) var(--space-sm); }
+      .hero__title { font-size: 2.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero__eyebrow">My Knowledge</div>
+    <h1 class="hero__title">W2 · 2026年8月8日〜14日</h1>
+    <div class="hero__meta">
+      <span>2026-08-09 生成</span>
+      <span>週次レポート</span>
+    </div>
+  </div>
+
+  <nav class="tab-nav" aria-label="カテゴリー">
+    <button class="tab-btn is-active" data-tab="tech">Technology</button>
+    <button class="tab-btn" data-tab="world">World Affairs</button>
+    <button class="tab-btn" data-tab="economy">Economy</button>
+    <button class="tab-btn" data-tab="science">Science</button>
+    <button class="tab-btn" data-tab="culture">Culture</button>
+  </nav>
+
+  <div class="content-area">
+    <div class="tab-content is-active" id="tab-tech">
+      <div class="section-header">Technology &amp; Development</div>
+      <div class="article-grid">
+        <p class="empty">No adopted items this week.</p>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-world">
+      <div class="section-header">World Affairs</div>
+      <div class="article-grid">
+        <article class="article"><div class="article__meta">東アジア</div><h3 class="article__headline"><a href="https://apnews.com/article/36ee2348fdd94d615efa6f0d9260edef">North Korea conducts ballistic missile test days before US and South Korea begin drills</a></h3><p class="article__body">AP本文によると、北朝鮮は2026年8月6日に東岸の元山付近から短距離弾道ミサイルを発射し、韓国・日本が抗議した。米韓年次演習を前にした示威行動として、日韓を含む監視・防衛連携の緊張を高める動きや。</p></article>
+<article class="article"><div class="article__meta">中東</div><h3 class="article__headline"><a href="https://apnews.com/article/d23e098f5bb6f87c7bb7d8bf9d4d5fb2">Tensions in Lebanon and other news from across the Middle East</a></h3><p class="article__body">AP本文では、イスラエル軍の退避警告後にレバノン南部で攻撃と死傷者が出て、ローマでのイスラエル撤収・ヒズボラ武装解除協議が揺らいだと報じている。ガザ以外の北部戦線も不安定さが続く事例や。</p></article>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-economy">
+      <div class="section-header">Economy &amp; Startups</div>
+      <div class="article-grid">
+        <article class="article"><div class="article__meta">マクロ・雇用</div><h3 class="article__headline"><a href="https://www.bls.gov/news.release/empsit.nr0.htm">Employment Situation Summary</a></h3><p class="article__body">米BLSの2026年7月雇用統計は、非農業部門雇用者数が23,000人減、失業率4.1%、労働参加率61.4%やった。前週のJOLTSの求人減少に続く雇用側の弱さとして、成長企業の採用環境を慎重に見る材料になる。（2026-08-07公表の公式統計）</p></article>
+<article class="article"><div class="article__meta">企業決算・資本市場</div><h3 class="article__headline"><a href="https://www.investopedia.com/market-update-cloudflare-stock-soars-to-record-on-strong-earnings-net-12036541">Cloudflare Stock Soars to Record on Strong Earnings</a></h3><p class="article__body">Cloudflareの2026年第2四半期売上は6億9,610万ドルで前年比36%増、調整後EPSは0.29ドル。Q3と通期の売上見通しも引き上げられ、AIエージェント向けトラフィックがインフラ企業の決算に現れた新しい差分として扱える。</p></article>
+<article class="article"><div class="article__meta">スタートアップ資金調達</div><h3 class="article__headline"><a href="https://www.wsj.com/business/retail/the-hottest-app-in-retail-is-now-worth-20-billion-c98f0897">Shopping App Whatnot Valued at $20 Billion in New Funding</a></h3><p class="article__body">Whatnotは新規調達で5億4,500万ドルを集め、評価額20 billion dollarsと報じられた。AIインフラ以外でも、ライブコマースのネットワーク効果に大型資本が入る例として残す。</p></article>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-science">
+      <div class="section-header">Science &amp; Space</div>
+      <div class="article-grid">
+        <article class="article"><div class="article__meta">宇宙物理</div><h3 class="article__headline"><a href="https://science.nasa.gov/missions/ixpe/nasas-ixpe-may-have-proven-90-year-old-theory/">NASA’s IXPE May Have Proven 90-Year-Old Theory</a></h3><p class="article__body">NASAは磁星1E 1547-5408のX線偏光観測が、極端な磁場で真空が光の偏光を変えるvacuum birefringenceを強く支持したと説明する。IXPE・NICER・Parkesの協調観測によるNature掲載結果や。</p></article>
+<article class="article"><div class="article__meta">惑星科学</div><h3 class="article__headline"><a href="https://science.nasa.gov/blogs/science-news/2026/08/05/nasas-new-horizons-finds-evidence-of-recent-liquid-on-plutos-surface/">NASA’s New Horizons Finds Evidence of Recent Liquid on Pluto’s Surface</a></h3><p class="article__body">New Horizonsの2015年画像を再解析し、PlutoのSputnik Planitia北縁で地下から上がった液体窒素が表面を一時的に濡らした可能性を示した。Planetary Science Journal掲載研究で、比較的最近の液体活動の証拠として紹介される。</p></article>
+<article class="article"><div class="article__meta">地球科学</div><h3 class="article__headline"><a href="https://science.nasa.gov/earth/earth-observatory/sensing-the-poles-hidden-heat/">Sensing the Poles’ Hidden Heat</a></h3><p class="article__body">NASA Earth ObservatoryはPREFIREの2年分データから、極域の表面温度変動と遠赤外放射によるエネルギー放出を可視化した。極域観測を気候モデルや氷床・水循環予測へつなぐ基礎資料になる。</p></article>
+<article class="article"><div class="article__meta">医学</div><h3 class="article__headline"><a href="https://www.nih.gov/news-events/nih-research-matters/blood-test-predicts-tumor-response-treatment">Blood test predicts tumor response to treatment</a></h3><p class="article__body">NIH Research Mattersは、腫瘍組織のspatial ecotypeを血中DNAメチル化から推定し、免疫チェックポイント阻害薬への反応を予測する研究を紹介する。メラノーマ78人の検証で、臨床導入済みではなく外部検証が必要な段階や。</p></article>
+      </div>
+    </div>
+    <div class="tab-content" id="tab-culture">
+      <div class="section-header">Culture &amp; Entertainment</div>
+      <div class="article-grid">
+        <article class="article"><div class="article__meta">音楽</div><h3 class="article__headline"><a href="https://pitchfork.com/story/william-orbit-madonna-and-blur-producer-dies-at-69/">William Orbit, Madonna and Blur Producer, Dies at 69</a></h3><p class="article__body">Pitchfork本文で、William Orbitが家族発表に基づき7月23日に69歳で亡くなったことを確認。Madonna『Ray of Light』やBlur『13』を支えた90年代電子音楽・ポップ史の節目や。</p></article>
+<article class="article"><div class="article__meta">音楽</div><h3 class="article__headline"><a href="https://pitchfork.com/story/olof-dreijer-lines-up-tour-across-north-america-and-europe/">The Knife’s Olof Dreijer Announces Debut Solo Tour</a></h3><p class="article__body">Olof Dreijerが初のソロツアーを発表し、9月25日フィラデルフィアから11月7日ブリストルまでの日程と新しい照明演出を示した。ソロ作後のライブ設計まで具体化した動きや。</p></article>
+<article class="article"><div class="article__meta">映像・アニメ</div><h3 class="article__headline"><a href="https://tcv.roppongihills.com/en/news/2026/07/8876/">NOTICE: Information Regarding Access Restrictions on Saturday, August 8, 2026</a></h3><p class="article__body">東京シティビュー公式告知では、神宮外苑花火大会に伴い8月8日17時から22時まで52階展望台の一部立入制限を実施する。「薬屋のひとりごと」展示は通常鑑賞できるが花火観覧は不可で、IP展示と都市イベント運営の接点が見える。</p></article>
+<article class="article"><div class="article__meta">アート・文化</div><h3 class="article__headline"><a href="https://www.mori.art.museum/en/news/2026/06/8805/">The Ron Mueck Exhibition Surpasses 100,000 Visitors! Opening Hours on Weekends and Public Holidays to Be Extended from July Onward</a></h3><p class="article__body">森美術館公式告知ではRon Mueck展の来場者が10万人を超えたため、土日祝を9時開館へ拡大し、8月8日から16日も同対応にする。来場集中に応じた展示運営の時間設計の事例や。</p></article>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    My Knowledge Weekly · W2 · 2026年8月8日〜14日
+  </footer>
+
+  <script>
+    const btns = document.querySelectorAll('.tab-btn');
+    const panels = document.querySelectorAll('.tab-content');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        btns.forEach(b => b.classList.remove('is-active'));
+        panels.forEach(p => p.classList.remove('is-active'));
+        btn.classList.add('is-active');
+        document.getElementById('tab-' + btn.dataset.tab).classList.add('is-active');
+      });
+    });
+  </script>
+
+</body>
+</html>
