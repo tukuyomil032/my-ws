@@ -1,97 +1,206 @@
 <!DOCTYPE html>
-<!-- Hallmark · macrostructure: Field Notes · genre: editorial · theme: Night Ledger · dark -->
-<!-- Hallmark · pre-emit critique: P5 H5 E4 S5 R5 V4 -->
-<!-- Template 2: Night Ledger — 2026年7月15日〜19日 -->
+<!-- Hallmark · macrostructure: Bento Grid · genre: reading · theme: Night Study · dark -->
+<!-- Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 -->
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>W3 · 2026年7月15日〜21日 — My Knowledge</title>
+  <title>W3 · 2026年8月15日〜21日 — My Knowledge</title>
   <style>
-    *, *::before, *::after { box-sizing: border-box; }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
     :root {
-      --color-bg: #111417;
-      --color-panel: #191d21;
-      --color-panel-2: #20262b;
-      --color-ink: #f0eee8;
-      --color-muted: #a6adb0;
-      --color-border: #394147;
-      --color-accent: #d9a441;
-      --color-accent-2: #83b7a5;
-      --font-display: Georgia, "Times New Roman", serif;
-      --font-body: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", sans-serif;
-      --space-sm: .7rem;
-      --space-md: 1.2rem;
-      --space-lg: 2rem;
-      --space-xl: 4rem;
+      --color-bg: oklch(10% 0.015 50);
+      --color-bg-2: oklch(14% 0.018 50);
+      --color-ink: oklch(88% 0.012 75);
+      --color-ink-2: oklch(55% 0.012 75);
+      --color-accent: oklch(72% 0.15 75);
+      --color-border: oklch(20% 0.015 50);
+      --color-ind-tech: oklch(62% 0.2 250);
+      --color-ind-other: oklch(58% 0.18 155);
+      --font-body: -apple-system, "SF Pro Text", "Helvetica Neue", sans-serif;
+      --font-reading: Georgia, "Times New Roman", serif;
+      --space-sm: 0.75rem;
+      --space-md: 1.5rem;
+      --space-lg: 3rem;
+      --space-xl: 5rem;
     }
-    html, body { overflow-x: clip; }
-    body { margin: 0; background: var(--color-bg); color: var(--color-ink); font-family: var(--font-body); line-height: 1.65; }
-    a { color: inherit; }
-    .masthead { max-width: 1180px; margin: 0 auto; padding: var(--space-xl) var(--space-lg) var(--space-lg); border-bottom: 1px solid var(--color-border); }
-    .eyebrow { color: var(--color-accent); font-size: .7rem; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
-    h1 { max-width: 760px; margin: .7rem 0; font: 600 clamp(2.6rem, 7vw, 6.6rem)/.96 var(--font-display); letter-spacing: -.045em; }
-    .dek { max-width: 670px; margin: 0; color: var(--color-muted); font-size: 1rem; }
-    .meta { margin-top: var(--space-md); color: var(--color-muted); font-size: .75rem; }
-    .index { max-width: 1180px; margin: 0 auto; padding: var(--space-md) var(--space-lg); display: flex; flex-wrap: wrap; gap: .7rem 1.2rem; border-bottom: 1px solid var(--color-border); }
-    .index a { color: var(--color-muted); font-size: .78rem; text-decoration: none; }
-    .index a:hover { color: var(--color-accent); }
-    .layout { max-width: 1180px; margin: 0 auto; padding: var(--space-lg); display: grid; grid-template-columns: minmax(0, 1.45fr) minmax(0, .85fr); gap: var(--space-lg); }
-    .section { min-width: 0; padding: var(--space-md); background: var(--color-panel); border: 1px solid var(--color-border); }
-    .section--wide { grid-row: span 2; }
-    .section h2 { margin: 0 0 var(--space-md); font: 600 1.7rem/1.1 var(--font-display); }
-    .section h2 span { display: block; margin-bottom: .45rem; color: var(--color-accent); font: 700 .68rem var(--font-body); letter-spacing: .16em; text-transform: uppercase; }
-    .item { padding: var(--space-md) 0; border-top: 1px solid var(--color-border); }
-    .item:first-of-type { padding-top: 0; border-top: 0; }
-    .item h3 { margin: 0 0 .35rem; font: 600 1.16rem/1.2 var(--font-display); }
-    .item h3 a { text-decoration: none; }
-    .item h3 a:hover { color: var(--color-accent); }
-    .item p { margin: 0; color: var(--color-muted); font-size: .88rem; }
-    .tag { display: inline-block; margin-bottom: .5rem; color: var(--color-accent-2); font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
-    footer { max-width: 1180px; margin: 0 auto; padding: var(--space-md) var(--space-lg) var(--space-xl); color: var(--color-muted); font-size: .72rem; }
-    @media (max-width: 760px) { .masthead, .index, .layout, footer { padding-left: var(--space-md); padding-right: var(--space-md); } .layout { grid-template-columns: minmax(0, 1fr); } .section--wide { grid-row: auto; } }
-    @media (max-width: 420px) { h1 { font-size: 2.55rem; } .section { padding: 1rem; } }
+
+    html { overflow-x: clip; }
+    body {
+      background: var(--color-bg);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      font-size: 0.95rem;
+      line-height: 1.65;
+      min-height: 100dvh;
+    }
+
+    /* ── Header ── */
+    .page-header {
+      padding: var(--space-lg) var(--space-lg) var(--space-md);
+      border-bottom: 1px solid var(--color-border);
+    }
+    .page-header__brand {
+      font-size: 0.72rem;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--color-ink-2);
+      margin-bottom: 0.4rem;
+    }
+    .page-header__title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: var(--color-ink);
+    }
+    .page-header__date {
+      margin-top: 0.3rem;
+      font-size: 0.72rem;
+      color: var(--color-ink-2);
+    }
+
+    /* ── Content ── */
+    .content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: var(--space-lg) var(--space-lg) var(--space-xl);
+    }
+
+    /* ── Section header row ── */
+    .section-row {
+      grid-column: 1 / -1;
+      padding: 0.5rem 0 0.35rem;
+      border-top: 1px solid var(--color-border);
+      margin-bottom: 0;
+    }
+    .section-row__label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: var(--color-ink-2);
+    }
+
+    /* ── Bento grid ── */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-sm);
+      margin-top: var(--space-sm);
+      margin-bottom: var(--space-lg);
+    }
+
+    /* ── Notebook card ── */
+    .card {
+      background: var(--color-bg-2);
+      padding: var(--space-md);
+      position: relative;
+    }
+    .card--tech {
+      box-shadow: inset 3px 0 0 var(--color-ind-tech);
+    }
+    .card--other {
+      box-shadow: inset 3px 0 0 var(--color-ind-other);
+    }
+    .card__headline {
+      font-size: 0.92rem;
+      font-weight: 600;
+      line-height: 1.3;
+      margin-bottom: 0.3rem;
+      overflow-wrap: anywhere;
+    }
+    .card__headline a {
+      color: var(--color-ink);
+      text-decoration: none;
+    }
+    .card__headline a:hover { color: var(--color-accent); }
+    .card__meta {
+      font-size: 0.68rem;
+      color: var(--color-ink-2);
+      margin-bottom: 0.5rem;
+    }
+    .card__body {
+      font-size: 0.83rem;
+      line-height: 1.6;
+      color: var(--color-ink-2);
+      overflow-wrap: anywhere;
+    }
+    .card__body em, .card__body blockquote {
+      font-family: var(--font-reading);
+      font-style: italic;
+      color: var(--color-ink);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      padding: var(--space-sm) var(--space-lg);
+      border-top: 1px solid var(--color-border);
+      font-size: 0.68rem;
+      color: var(--color-ink-2);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    @media (max-width: 640px) {
+      .page-header, .content, .footer { padding-left: var(--space-sm); padding-right: var(--space-sm); }
+      .page-header { padding-top: var(--space-md); }
+      .bento-grid { grid-template-columns: 1fr; }
+    }
   </style>
 </head>
 <body>
-  <header class="masthead">
-    <div class="eyebrow">My Knowledge / Weekly Field Notes</div>
-    <h1>今週、世界は<br>どこへ動いたか。</h1>
-    <p class="dek">W3の収集から、エージェント基盤の実装、AIインフラへの資本集中、越境する災害、そして観測科学の新しい手がかりを抜き出した。</p>
-    <div class="meta">W3 · 2026年7月15日〜21日　｜　今回の収集: 7月15日〜19日　｜　生成: 2026-07-19 JST</div>
+
+  <header class="page-header">
+    <div class="page-header__brand">My Knowledge · Weekly</div>
+    <h1 class="page-header__title">W3 · 2026年8月15日〜21日</h1>
+    <div class="page-header__date">2026-08-16</div>
   </header>
-  <nav class="index" aria-label="カテゴリー">
-    <a href="#technology">01 Technology</a><a href="#world">02 World</a><a href="#economy">03 Economy</a><a href="#culture">04 Culture</a><a href="#science">05 Science</a>
-  </nav>
-  <main class="layout">
-    <section class="section section--wide" id="technology">
-      <h2><span>01 / Technology</span>道具が「機能」から「仕事の場」へ</h2>
-      <article class="item"><div class="tag">Agent tooling</div><h3><a href="https://code.claude.com/docs/en/changelog" target="_blank" rel="noopener">Claude Codeは複数セッションを扱うハーネスへ</a></h3><p>バックグラウンドセッション、agent view、完了条件付きの継続実行など、CLIの中心が単発コマンドから仕事単位の管理へ移っている。</p></article>
-      <article class="item"><div class="tag">Desktop infrastructure</div><h3><a href="https://tauri.app/release/" target="_blank" rel="noopener">Tauri v2は依存グラフで更新する</a></h3><p>Rust crate、JS API、CLI、WebView層が同時に動く。アプリの更新ではなく、エコシステム全体の整合性を確認する運用が重要になる。</p></article>
-      <article class="item"><div class="tag">Open source</div><h3><a href="https://github.com/PostHog/posthog" target="_blank" rel="noopener">AIエージェントの観測が既存分析基盤へ接続</a></h3><p>PostHogのような基盤が、session replayやerror trackingをagentの診断文脈へまとめる。生成と評価の間を埋める道具が増えている。</p></article>
-      <article class="item"><div class="tag">Build systems</div><h3><a href="https://vite.dev/releases" target="_blank" rel="noopener">Viteはマイナー単位の更新管理が前提に</a></h3><p>セキュリティ修正のバックポート対象が複数系列にまたがるため、メジャー番号だけでなくマイナー系列とエコシステムCIを追う必要がある。</p></article>
-    </section>
-    <section class="section" id="economy">
-      <h2><span>03 / Economy</span>AIの次は電力と国家</h2>
-      <article class="item"><div class="tag">Capital</div><h3><a href="https://www.databricks.com/company/newsroom/press-releases/databricks-raising-strategic-round-funding-188-billion-valuation" target="_blank" rel="noopener">Databricksの評価額とAI基盤投資</a></h3><p>$188B評価額のterm sheetは、企業向けAIを支えるデータ基盤への資本集中を象徴する。</p></article>
-      <article class="item"><div class="tag">Energy</div><h3><a href="https://techcrunch.com/2026/07/17/nuclear-startup-valar-atomics-in-talks-to-raise-new-funding-at-6b-valuation/" target="_blank" rel="noopener">データセンターの電力制約が原子力へ波及</a></h3><p>Valar Atomicsの調達協議は未成立やが、AIインフラのボトルネックが電源側の資本テーマを押し上げている。</p></article>
-    </section>
-    <section class="section" id="world">
-      <h2><span>02 / World</span>災害は国境を越えて政治になる</h2>
-      <article class="item"><div class="tag">North America</div><h3><a href="https://apnews.com/article/21b616e6fef1af907abef4aba6f5dfb4" target="_blank" rel="noopener">山火事の煙が米加通商摩擦へ</a></h3><p>越境する煙への対応が追加関税の議論へ接続され、環境災害と経済外交の距離が縮まった。</p></article>
-      <article class="item"><div class="tag">South America</div><h3><a href="https://www.investing.com/news/world-news/brazil-justice-suspends-visits-to-expresident-bolsonaro-for-30-days-4799517" target="_blank" rel="noopener">司法手続きが政治的接触を制限</a></h3><p>ブラジル前大統領への訪問制限は、司法管理と政治対立が重なる局面を示す。</p></article>
-    </section>
-    <section class="section" id="culture">
-      <h2><span>04 / Culture</span>作品の外側も作品になる</h2>
-      <article class="item"><div class="tag">Music</div><h3><a href="https://pitchfork.com/reviews/albums/kelela-new-avatar/" target="_blank" rel="noopener">R&Bがギター音楽を取り込む</a></h3><p>Kelelaの新作レビューでは、R&Bを核にシューゲイズやパンクを組み込む方向転換が描かれた。</p></article>
-      <article class="item"><div class="tag">Art</div><h3><a href="https://www.wallpaper.com/art/exhibitions-shows/tate-modern-ana-mendieta-review" target="_blank" rel="noopener">Ana Mendietaの「身体と自然」を再展示</a></h3><p>Tate Modernの大規模展は、作品の再制作や英国初公開を通じて作家像を見直す機会になっている。</p></article>
-    </section>
-    <section class="section" id="science">
-      <h2><span>05 / Science</span>遠いものを、構造として見る</h2>
-      <article class="item"><div class="tag">Astronomy</div><h3><a href="https://www.sciencedaily.com/releases/2026/07/260716023601.htm" target="_blank" rel="noopener">JWSTがブラックホールの燃料循環を捉える</a></h3><p>冷却ガスが中心へ流れ込む自己調整的な循環の観測的手がかり。単一銀河の観測で、一般化には追加研究が要る。</p></article>
-      <article class="item"><div class="tag">Public health</div><h3><a href="https://www.sciencedaily.com/releases/2026/07/260717033213.htm" target="_blank" rel="noopener">人工甘味料と認知機能の観察研究</a></h3><p>高摂取群ほど低下が速かったという関連が報告されたが、観察研究であり因果関係は示されていない。</p></article>
-    </section>
+
+  <main class="content">
+    <div class="section-row">
+      <div class="section-row__label">Technology &amp; Development</div>
+    </div>
+    <div class="bento-grid" id="tech">
+      <article class="card card--tech"><h3 class="card__headline"><a href="https://github.com/lightningpixel/modly">lightningpixel/modly</a></h3><div class="card__meta">github.com · 2026-08-15</div><p class="card__body">画像やプロンプトからGPU上のローカルAIだけで3Dメッシュを生成するデスクトップアプリ。クラウドAPIを前提にせず、生成モデルを制作ツールへ組み込む実装例として確認できる。</p></article>
+      <article class="card card--tech"><h3 class="card__headline"><a href="https://github.com/unslothai/unsloth">Unsloth</a></h3><div class="card__meta">github.com · 2026-08-15</div><p class="card__body">LLMや拡散モデルのローカル実行・学習を支援し、Claude CodeやCodexとの接続も想定するツール。モデルを使うだけでなく、手元の計算資源で調整・運用する導線を一つのプロジェクトにまとめている。</p></article>
+      <article class="card card--tech"><h3 class="card__headline"><a href="https://developers.openai.com/blog/custom-code-review-rules-for-codex">Custom Code Review rules for Codex</a></h3><div class="card__meta">developers.openai.com · 2026-08-15</div><p class="card__body">Codex Code Reviewが`AGENTS.md`のリポジトリ固有ルールを読み、互換性やデータ境界などの不変条件をレビューへ持ち込めるようになった。ルールを広げすぎず、`rawResponseItem/*`のような具体的な破壊点を短く書くことがノイズ低減につながる。</p></article>
+      <article class="card card--tech"><h3 class="card__headline"><a href="https://developers.openai.com/blog/connect-private-mcp-servers-to-openai-products">Making private MCP servers reachable without making them public</a></h3><div class="card__meta">developers.openai.com · 2026-08-15</div><p class="card__body">Secure MCP Tunnelは、MCPサーバーを公開せずにChatGPTやCodexへ接続する構成を解説する。顧客側クライアントがoutbound HTTPSで接続を張り、streamingと認証を維持しながら私設ネットワークの境界を保つ設計や。</p></article>
+      <article class="card card--tech"><h3 class="card__headline"><a href="https://developer.apple.com/documentation/Xcode-Release-Notes/xcode-26-release-notes">Xcode 26 Release Notes</a></h3><div class="card__meta">developer.apple.com · 2026-08-15</div><p class="card__body">Xcode 26はSwift 6.2と各OSの26系SDKを含み、ChatGPT / Claudeアカウント連携やローカルモデル利用まで開発体験に取り込んでいる。Compilation Caching、Swift concurrency debugging、SwiftUI / Instrumentsの強化も含まれる公式リリースノートや。</p></article>
+      <article class="card card--tech"><h3 class="card__headline"><a href="https://github.blog/changelog/2026-08-12-agent-plugins-1-0-in-vs-code-copilot-cli-and-the-copilot-app/">Agent Plugins 1.0 in VS Code, Copilot CLI, and the Copilot app</a></h3><div class="card__meta">github.blog · 2026-08-16</div><p class="card__body">GitHub公式changelogによると、Agent Plugins 1.0はskillsとMCP serversをinstallable pluginにまとめ、VS Code・Copilot CLI・Copilot appで共通利用できる仕様を公開した。`plugin.json`、`skills/`、`mcp.json`、managed settings、MCP allowlistまで標準化され、複数クライアントへエージェント機能を配布する設計材料になる。</p></article>
+      <article class="card card--tech"><h3 class="card__headline"><a href="https://www.apple.com/newsroom/2026/06/apple-aids-app-development-with-new-intelligence-frameworks-and-advanced-tools/">Apple accelerates app development with new intelligence frameworks and advanced tools</a></h3><div class="card__meta">apple.com · 2026-08-16</div><p class="card__body">Appleの公式発表では、Xcode 27のcoding agentsがテスト・Playgrounds・Preview・Device Hubを含む自己検証経路を持ち、plug-insでcustom skills、MCP、Agent Client Protocol互換エージェントへ接続できる。Foundation Models APIのserver models・image input・custom skills・`LanguageModel` protocolと、Apple silicon向けCore AIも示されており、既存のXcode 27 runner項目とは異なるIDE・モデル連携側の差分として記録する。</p></article>
+    </div>
+
+    <div class="section-row">
+      <div class="section-row__label">World, Economy, Science &amp; Culture</div>
+    </div>
+    <div class="bento-grid" id="other">
+      <article class="card card--other"><h3 class="card__headline"><a href="https://apnews.com/article/e8565c608ac5283ec8103c85df924b13">2 UAE tankers attacked while transiting Strait of Hormuz, and other news from the Middle East</a></h3><div class="card__meta">apnews.com · 2026-08-15</div><p class="card__body">AP本文では、UAE系タンカー2隻へのドローン攻撃をめぐり、航路の安全保障が再び焦点になっている。West Bank、Yemen、中東停戦交渉も同時に動いており、海上輸送と停戦実装が別々ではなく同じ地域情勢の中で進んでいる。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://apnews.com/article/9eadff0d7590923e3d98c99e2b61150b">An overnight Ukrainian blitz damages Russia’s Black Sea naval stronghold, Zelenskyy says</a></h3><div class="card__meta">apnews.com · 2026-08-15</div><p class="card__body">AP本文によると、ウクライナの対艦ミサイルとドローンがNovorossiyskの海軍拠点を攻撃し、桟橋、防空設備、穀物ターミナルに被害が出た。前線だけでなく、黒海の軍港と物流拠点が攻撃対象になっている。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://techcrunch.com/2026/07/09/mercor-is-in-talks-for-a-20b-valuation/">Mercor is in talks for a $20B valuation</a></h3><div class="card__meta">techcrunch.com · 2026-08-15</div><p class="card__body">TechCrunchは、Mercorが200億ドル評価での資金調達を協議中だと報じた。前年の100億ドル評価からの上昇とDeeptune買収が同時に進んでいるが、「交渉中」であり確定ラウンドではない点は留保が必要や。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://techcrunch.com/2026/07/10/oratomic-raises-300m-to-build-a-viable-quantum-computer-that-needs-only-20k-qubits/">Oratomic raises $300M to build a viable quantum computer that needs only 20K qubits</a></h3><div class="card__meta">techcrunch.com · 2026-08-15</div><p class="card__body">OratomicはSeries Aで3億ドルを調達し、1万〜2万量子ビット規模で実用的な量子計算機を目指す構想を進めている。量子計算への大型資金流入と、必要な規模を下げる研究開発の競争を示す事例や。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://pitchfork.com/reviews/albums/margaret-glaspy-i-am-both/">Margaret Glaspy - I Am Both</a></h3><div class="card__meta">pitchfork.com · 2026-08-15</div><p class="card__body">Pitchfork本文は、無為への抵抗と個人的・政治的な怒りを重ねたフォーク作品として紹介している。作品の批評的な位置づけを、レビュー本文で確認できる。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://pitchfork.com/reviews/albums/mallory-hawk-chinook/">Mallory Hawk - Chinook</a></h3><div class="card__meta">pitchfork.com · 2026-08-15</div><p class="card__body">2010年代インディー、ダンスパンク、ニューウェイヴ、ガレージロックを横断するデビュー作としてレビューされている。ジャンルの混ざり方が作品の入口になるアルバムや。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://pitchfork.com/reviews/albums/roy-montgomery-martha-skye-murphy-nebular/">Roy Montgomery / Martha Skye Murphy - Nebular</a></h3><div class="card__meta">pitchfork.com · 2026-08-15</div><p class="card__body">離れた場所でやり取りしながら組み上げた、霧のようなアンビエント・ドローン作品として評されている。共同制作の距離感が音像の説明と結びついている。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://www.primevideo.com/detail/0K16R3PLUFGC2JUE457C26O4OD?tr=bv">Reacher Season 4</a></h3><div class="card__meta">primevideo.com · 2026-08-15</div><p class="card__body">Prime Videoの公式ページで、2026-08-12公開の新シーズンのトレーラーとあらすじを確認できる。フィラデルフィアの地下鉄での偶然の出会いから危険な事件へ入る導入が示されている。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://www.crunchyroll.com/news/latest/2026/6/1/the-seven-knights-of-the-marronnier-kingdom-anime-announced-october-2026">The Seven Knights of the Marronnier Kingdom Anime</a></h3><div class="card__meta">crunchyroll.com · 2026-08-15</div><p class="card__body">Crunchyroll本文で、NHK発表のTVアニメ化と2026年10月予定が確認できる。公式発表に基づく作品情報として記録する。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://apnews.com/article/047102d2bc170bd8e4b79b91827e1df4">With US-Iran talks stalled, diplomatic efforts expand to unlikely European players</a></h3><div class="card__meta">apnews.com · 2026-08-16</div><p class="card__body">AP本文では、米・イラン協議が行き詰まるなか、米国務長官がオーストリア外相・ギリシャ外相と協議し、両国外相がイラン外相とも接触したと報じている。ホルムズ海峡をめぐる危機が、当事国だけでなく欧州の海運・核外交の回路まで巻き込む新しい外交経路として現れている。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://apnews.com/article/8ba7dabc7a86f2a759cb01bc3d00a5a2">Anthony Hopkins on his debut album: &#x27;My first love is music&#x27;</a></h3><div class="card__meta">apnews.com · 2026-08-16</div><p class="card__body">アンソニー・ホプキンスが、60年以上かけて書きためた12曲をまとめたデビュー作『Life Is a Dream』を8月21日に発表予定やとAPが報じている。俳優として知られる人物のクラシック作品が、幼少期のウェールズの記憶と結びついている。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://pitchfork.com/news/carly-simon-new-album-comes-in-waves/">Carly Simon Readies First Album of Original Songs Since 2008</a></h3><div class="card__meta">pitchfork.com · 2026-08-16</div><p class="card__body">Pitchforkによると、カーリー・サイモンは2008年以来となるオリジナル曲中心の新作『Comes in Waves』を8月14日に発表した。長い沈黙後の新作という復帰の文脈を、個別記事本文で確認できる。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://www.crunchyroll.com/news/latest/2026/7/21/fairy-princess-minky-momo-anime-new-ova-teaser-visual-lead-cast">Fairy Princess Minky Momo Anime New OVA Shares Teaser, Visual and Lead Cast</a></h3><div class="card__meta">crunchyroll.com · 2026-08-16</div><p class="card__body">Crunchyroll本文で、『魔法のプリンセス ミンキーモモ』新OVA『憧れの夢へ -まごころのデュオ-』の11月13日公開予定、ティザー、主要キャストを確認できる。過去IPの新作展開を公式記事として記録する。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://press.moma.org/exhibition/architects-of-liberation-modernism-in-western-africa/">Architects of Liberation: Modernism in Western Africa</a></h3><div class="card__meta">press.moma.org · 2026-08-16</div><p class="card__body">MoMAの公式発表によると、西アフリカ独立期のモダニズム建築を政治的独立の文脈で扱う展覧会を2026年7月5日から2027年1月2日まで開催している。7か国・約450点・4年調査の規模で、建築史と脱植民地化を接続する展示や。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://www.nature.com/articles/d41586-026-02267-0">Personalized gene therapy relieves severe epilepsy in two boys</a></h3><div class="card__meta">nature.com · 2026-08-16</div><p class="card__body">Nature本文では、神経細胞の異常なナトリウムイオン流を標的にした個別化治療により、重い神経疾患を持つ男児2人で発作減少と発達面の改善が確認されたと紹介している。原著論文本文は未取得で、採用根拠はNatureの公開本文に限定する。</p></article>
+      <article class="card card--other"><h3 class="card__headline"><a href="https://www.nih.gov/news-events/nih-research-matters/senescent-cells-mapped-human-body-over-lifespan">Senescent cells mapped in human body over the lifespan</a></h3><div class="card__meta">nih.gov · 2026-08-16</div><p class="card__body">NIH本文では、SenNetが14種のヒト老化細胞からSenCatを構築し、2,000人超の血液データで老化関連タンパク質を評価したと説明している。歩行速度、糖尿病、高血圧、腎疾患などとの関連も示されるが、元論文本文は未取得であり、NIH公式記事の範囲で記録する。</p></article>
+    </div>
   </main>
-  <footer>出典は各項目のリンク先。速報・協議中の案件・観察研究は、本文中で確度と限界を区別している。</footer>
+
+  <footer class="footer">
+    <span>My Knowledge</span>
+    <span>W3 · 2026年8月15日〜21日</span>
+  </footer>
+
 </body>
 </html>
