@@ -1,55 +1,209 @@
 <!DOCTYPE html>
+<!-- Hallmark · macrostructure: Long Document · genre: minimal · theme: Minimal Apple · light -->
+<!-- Hallmark · pre-emit critique: P5 H5 E5 S5 R5 V5 -->
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>W4 · 2026年7月22日〜28日 — My Knowledge</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <title>W4 - 2026-08-22 to 2026-08-28 — My Knowledge</title>
   <style>
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    :root{--paper:#fff;--ink:#17191d;--muted:#73777d;--line:#dedfe1;--accent:#263b5c;--hero:#171c25;--sm:1rem;--md:2rem;--lg:4rem;--xl:7rem}
-    body{background:var(--paper);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif;line-height:1.6}
-    .hero{background:var(--hero);color:#fff;padding:var(--xl) var(--lg)}
-    .eyebrow,.meta,.section-title{font-size:.74rem;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
-    .eyebrow{color:#aeb4bd;margin-bottom:var(--sm)}
-    h1{font:400 clamp(2.8rem,7vw,6rem)/.95 "DM Serif Display",Georgia,serif;max-width:18ch;margin-bottom:var(--md)}
-    .hero .meta{color:#aeb4bd;display:flex;gap:var(--md);letter-spacing:normal;text-transform:none}
-    nav{border-bottom:1px solid var(--line);display:flex;overflow:auto;padding:0 var(--lg)}
-    button{background:none;border:0;border-bottom:2px solid transparent;color:var(--muted);cursor:pointer;font:500 .78rem "DM Sans",sans-serif;letter-spacing:.08em;padding:1rem 1.25rem;text-transform:uppercase;white-space:nowrap}
-    button.active{border-bottom-color:var(--ink);color:var(--ink)}
-    main{margin:auto;max-width:1280px;padding:var(--md) var(--lg) var(--xl)}
-    section{display:none} section.active{display:block}
-    .section-title{border-bottom:2px solid var(--ink);color:var(--muted);margin-bottom:var(--sm);padding-bottom:.5rem}
-    .grid{display:grid;gap:var(--md);grid-template-columns:repeat(3,1fr)}
-    article{border-top:1px solid var(--line);padding:var(--sm) 0}
-    h2{font:400 1.2rem/1.2 "DM Serif Display",Georgia,serif;margin-bottom:.5rem}
-    h2 a{color:var(--ink);text-decoration:none} h2 a:hover{color:var(--accent)}
-    article .meta{color:var(--muted);font-size:.73rem;letter-spacing:normal;margin-bottom:.5rem;text-transform:none}
-    article p{color:var(--muted);font-size:.88rem;line-height:1.6}
-    footer{border-top:1px solid var(--line);color:var(--muted);font-size:.73rem;padding:var(--sm) var(--lg);text-align:center}
-    @media(max-width:900px){.hero,main,nav,footer{padding-left:var(--sm);padding-right:var(--sm)}.grid{grid-template-columns:repeat(2,1fr)}}
-    @media(max-width:600px){.hero{padding-bottom:var(--lg);padding-top:var(--lg)}.grid{grid-template-columns:1fr}}
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --color-paper: oklch(100% 0 0);
+      --color-ink: oklch(13% 0 0);
+      --color-ink-2: oklch(55% 0 0);
+      --color-accent: oklch(50% 0.22 250);
+      --color-surface: oklch(97% 0 0);
+      --color-border: oklch(90% 0 0);
+      --font: -apple-system, "SF Pro Text", "Helvetica Neue", sans-serif;
+      --space-sm: 1rem;
+      --space-md: 2rem;
+      --space-lg: 5rem;
+      --space-xl: 8rem;
+    }
+
+    html { scroll-behavior: smooth; overflow-x: clip; }
+    body {
+      background: var(--color-paper);
+      color: var(--color-ink);
+      font-family: var(--font);
+      font-size: 1rem;
+      line-height: 1.75;
+      min-height: 100dvh;
+    }
+
+    /* ── Sticky anchor nav ── */
+    .anchor-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.85);
+      -webkit-backdrop-filter: saturate(180%) blur(20px);
+      backdrop-filter: saturate(180%) blur(20px);
+      border-bottom: 1px solid var(--color-border);
+      padding: 0 var(--space-md);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-md);
+      flex-wrap: wrap;
+      min-height: 3rem;
+    }
+    .anchor-nav__brand {
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: var(--color-ink);
+      white-space: nowrap;
+    }
+    .anchor-nav__links {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+      overflow-x: auto;
+      scrollbar-width: none;
+    }
+    .anchor-nav__links::-webkit-scrollbar { display: none; }
+    .anchor-nav__links a {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--color-ink-2);
+      text-decoration: none;
+      white-space: nowrap;
+    }
+    .anchor-nav__links a:hover { color: var(--color-accent); }
+
+    /* ── Page header ── */
+    .page-header {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: var(--space-xl) var(--space-md) var(--space-lg);
+    }
+    .page-header__eyebrow {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--color-ink-2);
+      margin-bottom: 0.75rem;
+    }
+    .page-header__title {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      color: var(--color-ink);
+    }
+    .page-header__date {
+      margin-top: 0.75rem;
+      font-size: 0.8rem;
+      color: var(--color-ink-2);
+    }
+
+    /* ── Section ── */
+    .section {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 0 var(--space-md) var(--space-xl);
+    }
+    .section-header {
+      font-size: 0.68rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--color-ink-2);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 0.5rem;
+      margin-bottom: var(--space-md);
+    }
+
+    /* ── Article ── */
+    .article {
+      padding: var(--space-md) 0;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .article:first-child { padding-top: 0; }
+    .article:last-child { border-bottom: none; }
+    .article__headline {
+      font-size: 1.35rem;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      margin-bottom: 0.35rem;
+    }
+    .article__headline a {
+      color: var(--color-ink);
+      text-decoration: none;
+    }
+    .article__headline a:hover { color: var(--color-accent); }
+    .article__meta {
+      font-size: 0.75rem;
+      color: var(--color-ink-2);
+      margin-bottom: 0.6rem;
+    }
+    .article__body {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: var(--color-ink);
+    }
+
+    /* ── Footer ── */
+    .footer {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: var(--space-md);
+      border-top: 1px solid var(--color-border);
+      font-size: 0.73rem;
+      color: var(--color-ink-2);
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    @media (max-width: 600px) {
+      .page-header { padding: var(--space-lg) var(--space-sm) var(--space-md); }
+      .section { padding: 0 var(--space-sm) var(--space-lg); }
+      .footer { padding: var(--space-sm); }
+      .anchor-nav { padding: 0 var(--space-sm); }
+    }
   </style>
 </head>
 <body>
-  <header class="hero"><div class="eyebrow">My Knowledge</div><h1>W4 · 2026年7月22日〜28日</h1><div class="meta"><span>2026-07-26 生成</span><span>週次レポート</span></div></header>
-  <nav aria-label="カテゴリー"><button class="active" data-tab="tech">Technology</button><button data-tab="world">World Affairs</button><button data-tab="economy">Economy</button><button data-tab="science">Science</button><button data-tab="culture">Culture</button></nav>
-  <main>
-    <section class="active" id="tech"><div class="section-title">Technology &amp; Development</div><div class="grid">
-      <article><h2><a href="https://github.blog/changelog/2026-07-23-copilot-cloud-agent-for-linear-is-now-generally-available/">Copilot cloud agent for Linear is now generally available</a></h2><div class="meta">GitHub Changelog · 2026-07-23</div><p>LinearのIssueから非同期に解析・実装・ドラフトPR・レビュー依頼までをつなぐ。モデル、custom agent、ブランチと一時実行環境を含む運用設計が焦点になる。</p></article>
-      <article><h2><a href="https://developers.googleblog.com/en/run-ray-on-tpu-part-1-the-foundations/">Run Ray on TPU, Part 1</a></h2><div class="meta">Google Developers Blog · 2026-07-20</div><p>Ray 2.55でGoogle Cloud TPUが第一級アクセラレーターとなり、TPUスライスのトポロジーと配置が分散実行の要点になる。</p></article>
-      <article><h2><a href="https://developers.googleblog.com/run-ray-on-tpu-part-2-ray-ai-libraries/">Run Ray on TPU, Part 2</a></h2><div class="meta">Google Developers Blog · 2026-07-24</div><p>Ray Serve・Data・TrainをTPUスライスで使う具体例を示し、入力シャーディング、チェックポイント、障害復旧までを扱う。</p></article>
-      <article><h2><a href="https://github.blog/changelog/2026-07-24-claude-opus-5-is-now-available-in-github-copilot/">Claude Opus 5 is now available in GitHub Copilot</a></h2><div class="meta">GitHub Changelog · 2026-07-24</div><p>VS Code、CLI、cloud agent、Xcodeなどへの段階展開。利用プランと管理者ポリシーを含む実運用条件が明記された。</p></article>
-      <article><h2><a href="https://github.blog/changelog/">Copilot usage metrics impact dashboard</a></h2><div class="meta">GitHub Changelog · 2026-07-22</div><p>Copilot利用量をモデル選択・コスト・品質評価のループへ接続する観測設計の入口として記録する。</p></article>
-    </div></section>
-    <section id="world"><div class="section-title">World Affairs</div><div class="grid"><article><h2>今回は採用なし</h2><div class="meta">SA3 · 2026-07-26</div><p>主要報道機関の個別記事本文を十分に確認できなかったため、速報性のある国際ニュースは採用しなかった。</p></article></div></section>
-    <section id="economy"><div class="section-title">Economy &amp; Startups</div><div class="grid"><article><h2><a href="https://techcrunch.com/2026/07/20/natural-raises-30m-to-reinvent-payments-for-ai-agents-and-take-on-stripe/">Natural raises $30M</a></h2><div class="meta">TechCrunch · 2026-07-20</div><p>AIエージェントが資金を移動・保管・回収し、人間や他のエージェントと取引する金融基盤を構築する。</p></article></div></section>
-    <section id="science"><div class="section-title">Science &amp; Space</div><div class="grid"><article><h2><a href="https://www.nature.com/articles/d41586-026-02332-8">White House rolls out AI funding</a></h2><div class="meta">Nature · 2026-07-24</div><p>約280チームがAIを科学課題へ適用する助成対象に選ばれた一方、研究費配分の組み替えには議会・研究者から批判も出ている。</p></article><article><h2><a href="https://www.nature.com/articles/s41586-026-10783-2">Verification of the Outer Space Treaty with cosmic protons</a></h2><div class="meta">Nature · 2026-07-08</div><p>高エネルギー陽子が誘発する中性子を使い、衛星の核兵器搭載を検証する概念・実現可能性を示した査読済み研究。</p></article></div></section>
-    <section id="culture"><div class="section-title">Culture &amp; Entertainment</div><div class="grid"><article><h2><a href="https://apnews.com/article/a50817b0eff18e63cefe9825b921d4f7">Music, Fashion, Film</a></h2><div class="meta">AP News · 2026-07-23</div><p>Charli xcxの新作を、前作後の期待とポップ、ロック、ハイパーポップの境界を揺さぶる方向転換から論じる。</p></article><article><h2><a href="https://www.universalmusic.ca/2026/07/23/adela-announces-debut-album-prima-due-september-4th-releases-new-single-and-music-video-aint-in-laout-now/">ADÉLA announces debut album PRIMA</a></h2><div class="meta">Universal Music Canada · 2026-07-23</div><p>デビューアルバム『PRIMA』を9月4日に発売し、新曲とミュージックビデオも案内した。</p></article></div></section>
-  </main>
-  <footer>My Knowledge Weekly · W4 · 2026年7月22日〜28日</footer>
-  <script>document.querySelectorAll('button').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('button,section').forEach(e=>e.classList.remove('active'));b.classList.add('active');document.getElementById(b.dataset.tab).classList.add('active')}));</script>
+
+  <nav class="anchor-nav" aria-label="ページ内ナビゲーション">
+    <div class="anchor-nav__brand">My Knowledge</div>
+    <ul class="anchor-nav__links">
+      <li><a href="#tech">Technology</a></li>
+      <li><a href="#world">World</a></li>
+      <li><a href="#economy">Economy</a></li>
+      <li><a href="#science">Science</a></li>
+      <li><a href="#culture">Culture</a></li>
+    </ul>
+  </nav>
+
+  <header class="page-header">
+    <div class="page-header__eyebrow">Weekly Knowledge</div>
+    <h1 class="page-header__title">W4 - 2026-08-22 to 2026-08-28</h1>
+    <div class="page-header__date">2026-08-23 生成</div>
+  </header>
+
+  <section class="section" id="tech">
+    <div class="section-header">Technology &amp; Development</div>
+    <article class="article"><h3 class="article__headline"><a href="https://bun.com/blog/bun-v1.4">Bun 1.4</a></h3><div class="article__meta">Bun - 2026-08-22</div><p class="article__body">Official release notes describe the move of core components from Zig to Rust and additions including WebView, image, Markdown, cron, and native PTY support. Reported figures remain scoped to the official claims.</p></article><article class="article"><h3 class="article__headline"><a href="https://openai.com/index/axios-developer-tool-compromise/">Response to Axios developer tool compromise</a></h3><div class="article__meta">OpenAI - 2026-08-22</div><p class="article__body">OpenAI described certificate rotation, rebuilds, and notarization checks after a compromised dependency entered a signing workflow. The case extends supply-chain review through the application signing boundary.</p></article><article class="article"><h3 class="article__headline"><a href="https://vite.dev/blog/announcing-vite8-1">Vite 8.1</a></h3><div class="article__meta">Vite - 2026-08-22</div><p class="article__body">The release adds case-insensitive import.meta.glob handling and asset detection from additional HTML attributes, representing compatibility work after the Vite 8 Rolldown transition.</p></article>
+  </section>
+
+  <section class="section" id="other">
+    <div class="section-header">World, Economy, Science &amp; Culture</div>
+    <article class="article"><h3 class="article__headline"><a href="https://www.nature.com/nature/articles?type=&year=2026">Hidden volcanoes hint at Moon's turbulent past</a></h3><div class="article__meta">Nature - 2026-08-22</div><p class="article__body">A Nature year index listed a Research Highlight about shield-volcano evidence on the Moon. The individual article was not verified, so numerical claims were not treated as established.</p></article><article class="article"><h3 class="article__headline"><a href="https://www.nature.com/nature/articles?type=&year=2026">NSF grant outlook</a></h3><div class="article__meta">Nature - 2026-08-22</div><p class="article__body">A Nature index listed reporting about a reduced outlook for new US science grants. Budget figures and policy changes remained unconfirmed because the individual article was not verified.</p></article><article class="article"><h3 class="article__headline"><a href="https://www.barbican.org.uk/sites/default/files/documents/2026-08/Barbican%20Cinema%20-%20September%20%2726_programme_press_release.pdf">Barbican Cinema September 2026 programme</a></h3><div class="article__meta">Barbican - 2026-08-22</div><p class="article__body">The official press release presents a September cinema programme that connects screenings with sound, live events, and discussion.</p></article>
+  </section>
+
+  <footer class="footer">
+    <span>My Knowledge Weekly</span>
+    <span>W4 - 2026-08-22 to 2026-08-28</span>
+  </footer>
+
 </body>
 </html>
