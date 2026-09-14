@@ -1,6 +1,6 @@
 ---
-last_updated: "2026-09-14"
-signals_total: 108
+last_updated: "2026-09-15"
+signals_total: 111
 ---
 
 # 興味プロファイル
@@ -25,6 +25,10 @@ AIエージェントと自動化を使い、技術・社会・文化・科学の
 
 **MC-VectorのSwiftネイティブ再実装**を、単なる画面の作り直しではなく、機能・状態遷移・IPC境界・バックアップや権限まで含む完全移植として設計しようとしている。Apple公式APIを優先しつつ、Package.swift、SwiftLint/SwiftFormat、SparkleのStable/Beta更新、Homebrew配布、デバッグ用Bundle IDまで運用設計へ落とし込もうとしている。
 
+**LoadStarのSwift/macOS開発基盤**を本番開発に入れる前提で整えようとしている。Xcode projectとPackage.swiftの責務、Domain／Featuresなどの構成、ローカルscriptとGitHub Actionsの境界、CI／Test／Release workflowを先に固定し、version.envを通常の変更から分離する設計を重視している。
+
+**リリースバージョン入力の人為ミス対策**にも関心が具体化している。`version.env`の値を無条件に使うのではなく、release準備の最初にバージョンを入力させ、それを検証・commitコマンド生成・release notesへ一貫して反映する流れを求めている。
+
 **動画の音声処理を安全に自動化すること**にも実用的な関心が出ている。個人情報を含む動画をフレーム解析せず、ffmpegで音量だけを変えた複数バリエーションとして書き出すよう、処理範囲を限定して依頼している。
 
 **Windows 11でのバックアップ実機検証と処理ライフサイクル**をさらに具体化している。サーバー停止中・起動中のZIP作成、`session.lock` の扱い、別タブへ移動したときに処理が止まる条件、対象セレクターの全選択結果が親画面へ反映されるかを、実装・テスト・Windows実機の証拠に分けて確かめようとしている。
@@ -32,6 +36,8 @@ AIエージェントと自動化を使い、技術・社会・文化・科学の
 **JavaとMinecraftの実行環境互換性**にも関心が出ている。古いMinecraftを新しいJavaで動かせる条件を、単に起動するかではなく、バージョンごとの要件や実際の互換性として整理しようとしている。
 
 **MC-VectorのReal Tauri E2EとStacked PR運用**を具体化している。モックE2Eを残したまま、サーバー lifecycle、ファイル操作、バックアップ・復元、artifact導入などの重要経路だけを実際のTauriアプリ起動からRust・filesystemまで通し、ADR単位の依存関係をStacked PRとしてレビュー可能に保ちたいと考えている。
+
+**Windows scheduled E2Eのdriver診断**にも新しい実装関心が出ている。失敗を単に再実行するのではなく、Edgeと一致する`msedgedriver`の自動取得、PATH／native driverの設定、driver起動ログとartifactによる再発解析まで一つのCI改善として扱おうとしている。
 
 **Debug／E2E環境のcredential分離とCIの供給網対策**にも関心が深まっている。app identifierごとにOS credential namespaceを分けて本番秘密情報の誤利用を防ぎ、GitHub Actionsのmutableな参照はcommit SHAへ固定するという、開発体験を保ちながら実害を減らす設計を検討している。
 
