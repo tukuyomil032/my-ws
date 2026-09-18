@@ -1,6 +1,6 @@
 ---
-last_updated: "2026-09-16"
-signals_total: 119
+last_updated: "2026-09-19"
+signals_total: 118
 ---
 
 # 興味プロファイル
@@ -10,6 +10,10 @@ signals_total: 119
 AIエージェントと自動化を使い、技術・社会・文化・科学の情報を継続的に蓄積する個人情報プラットフォームを構築している。単なるニュース収集ではなく、過去と現在の関心を構造化し、開発相談や意思決定の解像度を高めることを重視している。
 
 ## 今の関心（直近14日）
+
+**MC-VectorのDynmap風ワールド地図**が新しい大きな制作テーマになった。起動中Minecraftサーバーのワールドをアプリ内で表示する構想について、Dynmapの公式実装、Anvil/NBT読取、タイル・キャッシュ・更新、プレイヤー位置やマーカーの制約まで段階的に調べ、プラグイン連携と独自レンダラーを比較している。
+
+**ライブ地図レンダラーの実装境界**も深掘りしている。Paper/Spigot 1.21.x程度を対象に、Rust in-processとGo sidecar／standaloneを、region `.mca`、圧縮NBT、block states、テクスチャ、PNG/WebP、ファイル監視、Tauri結合、保守性の観点で比較し、MC-VectorのRust map実装ではscheduler、decode diagnostics、負座標、sparse region、ISO変換までfocused taskへ分解している。
 
 **LoadStarの要件復元とADR／Phaseの再構成**に強い関心が出ている。短い要約へ圧縮された記録では実装のWhyが失われると判断し、過去のCodex会話履歴JSONLを一次資料として、確定・訂正・推奨・未確定を分けながらPhase 2以降の計画へ戻すことを求めている。
 
